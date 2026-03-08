@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="260" viewBox="0 0 780 260" role="img" aria-label="Copilot feedback loop sketch">
+  <rect width="780" height="260" fill="#f8f4ec"/>
+  <g fill="none" stroke="#5f584f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="45" y="85" width="180" height="90" rx="14"/>
+    <rect x="300" y="40" width="180" height="90" rx="14"/>
+    <rect x="300" y="150" width="180" height="90" rx="14"/>
+    <rect x="555" y="85" width="180" height="90" rx="14"/>
+    <path d="M225 130 C255 130,270 85,300 85"/>
+    <path d="M225 130 C255 130,270 195,300 195"/>
+    <path d="M480 85 C515 85,520 130,555 130"/>
+    <path d="M480 195 C515 195,520 130,555 130"/>
+    <path d="M645 85 C605 38,485 18,390 22 C260 26,150 48,105 84" stroke-dasharray="5 6"/>
+  </g>
+  <g fill="#2f2b27" font-family="Georgia, serif" font-size="18">
+    <text x="78" y="136">Research Question</text>
+    <text x="340" y="92">Assumptions</text>
+    <text x="332" y="202">Data + Model</text>
+    <text x="592" y="136">Revision Notes</text>
+  </g>
+</svg>

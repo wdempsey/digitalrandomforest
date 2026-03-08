@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="720" viewBox="0 0 960 720" role="img" aria-label="Digital Random Forest placeholder sketch">
+  <rect width="960" height="720" fill="#f6efe3"/>
+  <g fill="none" stroke="#847564" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M478 560 L478 360"/>
+    <path d="M478 390 C430 390, 396 350, 388 304"/>
+    <path d="M478 418 C530 418, 566 376, 576 326"/>
+    <path d="M478 450 C428 450, 392 424, 366 384"/>
+    <path d="M478 475 C532 475, 572 444, 602 404"/>
+    <path d="M360 280 C420 238, 536 238, 602 286"/>
+    <path d="M338 332 C420 280, 540 282, 626 336"/>
+    <path d="M318 386 C418 332, 546 334, 646 390"/>
+  </g>
+  <g fill="#7a8f83" opacity="0.52">
+    <circle cx="390" cy="306" r="5"/>
+    <circle cx="456" cy="270" r="4"/>
+    <circle cx="532" cy="274" r="5"/>
+    <circle cx="586" cy="328" r="4"/>
+    <circle cx="414" cy="380" r="4"/>
+    <circle cx="548" cy="386" r="5"/>
+  </g>
+</svg>
