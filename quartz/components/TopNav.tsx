@@ -6,7 +6,6 @@ const gardenLinks = [
   { label: "Garden", href: "garden" },
   { label: "Essays", href: "garden/essays" },
   { label: "Notes", href: "garden/notes" },
-  { label: "Patterns", href: "garden/patterns" },
   { label: "Library", href: "garden/library" },
   { label: "Topics", href: "topics" },
 ]

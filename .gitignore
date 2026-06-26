@@ -2,3 +2,4 @@ node_modules
 .quartz-cache
 public
 content/private/references/
+tsconfig.tsbuildinfo

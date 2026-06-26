@@ -12,7 +12,7 @@ const config: QuartzConfig = {
     baseUrl: "digitalrandomforest",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
-    generateSocialImages: false,
+    generateSocialImages: true,
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,

@@ -36,10 +36,19 @@ const ScholarlyMeta: QuartzComponent = ({ cfg, fileData, displayClass }: QuartzC
   const status = typeof frontmatter.status === "string" ? frontmatter.status : null
   const version = typeof frontmatter.version === "string" ? frontmatter.version : null
 
+  const stageGlyphs: Record<string, string> = {
+    seed: "🌱",
+    growing: "🌿",
+    evergreen: "🌳",
+  }
+
   const entries: [string, string][] = []
   if (published) entries.push(["Published", formatDate(published, cfg.locale)])
   if (updated) entries.push(["Updated", formatDate(updated, cfg.locale)])
-  if (status) entries.push(["Status", toTitleCase(status)])
+  if (status) {
+    const glyph = stageGlyphs[status]
+    entries.push(["Stage", glyph ? `${glyph} ${toTitleCase(status)}` : toTitleCase(status)])
+  }
   if (version) entries.push(["Version", version])
 
   if (entries.length === 0) return null

@@ -24,7 +24,6 @@ export const sharedPageComponents: SharedLayout = {
       Garden: "/garden",
       Essays: "/garden/essays",
       Notes: "/garden/notes",
-      Patterns: "/garden/patterns",
       Library: "/garden/library",
       About: "/about",
       Now: "/now",
