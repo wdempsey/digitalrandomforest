@@ -2,37 +2,34 @@
 title: "Why Data Science's Future Is an Ecosystem Story"
 description: "A growing essay connecting frontier-AI ecosystem arguments to Donoho's account of frictionless reproducibility."
 kind: essay
-status: seed
-version: v1
+status: growing
+version: v2
+featured: true
 topics: [ai-workflows, software-methods, research, statistics]
 tags: [essay, ecosystem, open-source, reproducibility]
 date: 2026-06-16
 updated: 2026-06-25
 draft: false
-sketch: ""
+sketch: "/assets/sketches/ecosystem-loop.svg"
+sketchAlt: "A compounding loop — models, workflows and traces, evaluation, judgment and memory — feeding back into one another over time"
 ---
 
-This essay starts from a simple claim: the next durable advantage in data science will not come from access to a single frontier model. It will come from building ecosystems that let judgment, tools, workflows, and institutional memory compound around models over time.
+Every few months a better model arrives, and a familiar reflex follows: re-tool around it, re-run the benchmarks, treat the field as reset. The model is the asset. Swap in the best one and you are ahead; fall behind on it and you are behind.
 
-Four source texts help frame that argument.
+I think that framing quietly misreads where data science gets its leverage. The next durable advantage will not come from access to a single frontier model. It will come from the ecosystem around the model — the workflows, evaluation loops, reproducible traces, institutional memory, and human judgment that compound as models come and go.
+
+Put sharply: model access is not the moat. The learning ecosystem is. The rest of this essay argues why, drawing on both the history of data science and the likely shape of AI-assisted work.
+
+It builds on four sources: a frontier-ecosystem argument from the organizational side, Donoho on where recent progress actually came from, an ecological definition of *ecosystem*, and DORA's 2025 finding that AI mostly amplifies what a team already is.
 
 - [[https://snscratchpad.com/posts/frontier-ecosystem/|A frontier without an ecosystem is not stable]]
 - [[https://arxiv.org/abs/2310.00865|David Donoho, Data Science at the Singularity]]
 - [[https://www.youtube.com/watch?v=2n41YjR5QfU&t=1s|Ecosystems as co-evolving networks]]
 - [[https://dora.dev/research/2025/dora-report/|DORA, State of AI-assisted Software Development 2025]]
 
-Working references for local editing:
+## What an ecosystem advantage actually is
 
-- [Local copy of frontier-ecosystem post](../../private/references/frontier-ecosystem.html)
-- [Local copy of Donoho PDF](../../private/references/donoho-data-science-at-the-singularity.pdf)
-
-## Working thesis
-
-Modern AI progress is often narrated as a model story.
-
-But both the history of data science and the likely future of AI-assisted work point somewhere else.
-
-The real source of compounding advantage is the ecosystem around models:
+Modern AI progress is usually narrated as a model story. Both the history of data science and the likely future of AI-assisted work point somewhere else: the real source of compounding advantage is the ecosystem around models:
 
 - shared tools
 - reusable workflows
@@ -50,13 +47,9 @@ David Donoho's account of recent AI progress is a useful corrective to singulari
 
 His argument is that the striking acceleration of empirical machine learning came from a transition to frictionless reproducibility. In his framing, the important ingredients are not mysterious superintelligence but mature systems of data sharing, code sharing, and competitive challenges.
 
-That claim matters because it shifts our attention from isolated breakthroughs to the conditions that let ideas spread, get tested, and improve quickly.
+"Frictionless reproducibility" is simpler than it sounds. For most of the history of empirical research, reusing someone else's result meant re-deriving it: re-collecting the data, re-implementing the method, guessing at the settings buried in a methods section. Donoho's point is that this friction collapsed. When data is shared openly, code is published alongside the paper, and a public benchmark defines what counts as progress, a new idea can be tested against everything that came before it in an afternoon rather than a year. The cost of one cycle of test-and-improve fell toward zero, and the rate of progress rose to match.
 
-Notes to expand:
-
-- Explain frictionless reproducibility in plain language.
-- Connect this to open-source tools in statistics and data science.
-- Add concrete examples: R packages, Python libraries, benchmarks, shared datasets, reproducible notebooks.
+You can see the same machinery underneath everyday data science. R and Python were never just languages; CRAN, PyPI, scikit-learn, Hugging Face datasets and model hubs, Kaggle leaderboards, and reproducible notebooks are coordination systems. They let a good idea spread and a weak one fail in the open, fast. The acceleration we attribute to clever models is, in large part, the acceleration of an ecosystem that made ideas cheap to share and cheap to check.
 
 ## What the frontier-ecosystem post adds
 
@@ -68,11 +61,7 @@ This makes model choice important, but not sovereign.
 
 If a company cannot swap models without losing its accumulated knowledge, then its real asset is weaker than it appears.
 
-Notes to expand:
-
-- Clarify the human capital / token capital framing.
-- Connect private evals and workflow traces to data science practice.
-- Make the argument concrete for research teams, not just companies.
+For a research group the translation is direct. The base model is rented and interchangeable. What is yours is the private evaluation set that encodes what *good* means in your domain, the workflow traces that record how a result was actually produced, and the tacit judgment of which assumptions are load-bearing. Those are the things that should survive a model swap — and the things most teams currently let evaporate.
 
 ## The synthesis
 
@@ -121,8 +110,8 @@ One important test case is process streamlining. DeepMind's work on [[https://de
 - How do we tell the difference between bureaucracy that is pure process drag and bureaucracy that protects useful feedback loops?
 - When does AI multiply the right force, and when does it divide attention, judgment, or institutional learning?
 
-## Next sections to write
+## The moat is the loop
 
-- A stronger opening that states the argument more sharply.
-- A paragraph on why data science historically benefited from open software ecosystems.
-- A practical section on what universities, labs, and companies should build now.
+It is worth saying plainly what universities, labs, and teams should build now, because it is unglamorous and easy to defer. Not a model. A loop: a private evaluation set that captures what good work means in your domain; a habit of logging the prompts, context, code, and decisions behind a result so it can be re-run and argued with; a small library of reusable patterns; and enough institutional memory that a departing student does not take the group's judgment with them. None of this requires the frontier. All of it compounds.
+
+This is the distinction I want a reader to leave with. A model is something you access. An ecosystem is something you accumulate. Access can be bought, copied, and out-competed the month a better model ships. What you have accumulated — the loops, the traces, the encoded judgment — is the part no vendor can hand your competitor. Model access is not the moat. The learning ecosystem is.

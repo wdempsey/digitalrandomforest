@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="320" viewBox="0 0 800 320" role="img" aria-label="A compounding loop: models, workflows and traces, evaluation, judgment and memory, feeding back into each other over time">
+  <rect width="800" height="320" fill="#f8f4ec"/>
+  <g fill="none" stroke="#5f584f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="70" y="44" width="190" height="84" rx="14"/>
+    <rect x="540" y="44" width="200" height="84" rx="14"/>
+    <rect x="540" y="192" width="200" height="84" rx="14"/>
+    <rect x="70" y="192" width="200" height="84" rx="14"/>
+    <!-- clockwise arrows -->
+    <path d="M268 86 C360 70, 450 70, 532 86"/>
+    <path d="M526 92 l8 -8 l-1 12 z" fill="#5f584f" stroke="none"/>
+    <path d="M640 136 C656 158, 656 178, 640 184"/>
+    <path d="M634 178 l8 8 l-12 1 z" fill="#5f584f" stroke="none"/>
+    <path d="M532 234 C440 250, 360 250, 278 234"/>
+    <path d="M284 228 l-8 8 l1 -12 z" fill="#5f584f" stroke="none"/>
+    <path d="M160 184 C144 162, 144 142, 160 136"/>
+    <path d="M166 142 l-8 -8 l12 -1 z" fill="#5f584f" stroke="none"/>
+    <!-- inner feedback hint -->
+    <ellipse cx="400" cy="160" rx="150" ry="58" stroke-dasharray="4 7" stroke-width="1.6"/>
+  </g>
+  <g fill="#2f2b27" font-family="Georgia, 'Source Serif 4', serif" font-size="17">
+    <text x="110" y="92">Models</text>
+    <text x="566" y="92">Workflows &amp; Traces</text>
+    <text x="566" y="240">Evaluation Loops</text>
+    <text x="98" y="240">Judgment &amp; Memory</text>
+  </g>
+  <g fill="#7a8f83">
+    <text x="338" y="166" font-family="Georgia, serif" font-size="14" font-style="italic" fill="#776657">compounds over time</text>
+    <circle cx="400" cy="100" r="3.4" opacity="0.6"/>
+    <circle cx="400" cy="220" r="3.4" opacity="0.6"/>
+  </g>
+</svg>

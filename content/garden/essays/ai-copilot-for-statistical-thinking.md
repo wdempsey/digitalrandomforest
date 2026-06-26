@@ -4,7 +4,6 @@ description: "Where language models help in statistics, and where they should be
 kind: essay
 status: growing
 version: v2
-featured: true
 topics: [ai-workflows, statistics, research]
 tags: [essay, workflow, sketch]
 date: 2026-03-07
