@@ -19,6 +19,8 @@ They are polished notes, not formal review articles.
 Start with:
 
 - [[garden/library/double-machine-learning-summary|Double Machine Learning: Reading Notes]]
+- [[garden/library/top-ideas-in-statistics-and-machine-learning|Seminal Ideas in Statistics and Machine Learning]]
 - [[garden/library/targeted-learning-overview|Targeted Learning: Overview Notes]]
+- [[garden/library/applied-examples-through-cox|Foundational and Applied Examples Through Cox]]
 
 Then trace outward to [[garden/notes/index|Notes]] and [[garden/patterns/index|Patterns]] to see how ideas move into workflow design.

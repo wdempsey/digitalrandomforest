@@ -16,7 +16,14 @@ Notes hold active thinking: definitions, constraints, unresolved questions.
 
 Current threads:
 
+- [[garden/notes/topic-backlog|Topic Backlog]]
+- [[garden/notes/academics-as-ai-managers|Academics as AI Managers]]
+- [[garden/notes/a-frontier-needs-an-ecosystem|A Frontier Needs an Ecosystem]]
+- [[garden/notes/researchers-are-not-end-point-verifiers|Researchers Are Not End-Point Verifiers]]
+- [[garden/notes/em-and-variational-methods|EM and Variational Methods]]
 - [[garden/notes/identification-before-automation|Identification Before Automation]]
 - [[garden/notes/llm-context-budget-for-research|LLM Context Budget for Research]]
+- [[garden/notes/responding-to-ai-arguments-from-econ-and-math|Responding to AI Arguments from Econ and Math]]
+- [[garden/notes/interviewing-the-field|Interviewing the Field]]
 
 When a note stabilizes, it usually moves toward [[garden/essays/index|Essays]] or [[garden/patterns/index|Patterns]].

@@ -120,6 +120,81 @@ h3 {
   margin-top: 1.5rem;
 }
 
+/* Ideas Timeline */
+
+.ideas-timeline-section {
+  margin-top: 3.5rem;
+  margin-bottom: 4rem;
+}
+
+.ideas-timeline-section h2 {
+  margin-bottom: 1.5rem;
+}
+
+.ideas-timeline {
+  position: relative;
+  margin-top: 1rem;
+  padding-left: 2.5rem;
+}
+
+.ideas-timeline::before {
+  content: "";
+  position: absolute;
+  left: 0.45rem;
+  top: 0.15rem;
+  bottom: 0.15rem;
+  width: 2px;
+  background: rgba(47, 42, 38, 0.14);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -2.1rem;
+  top: 0.35rem;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 999px;
+  background: #fdfbf7;
+  border: 2px solid rgba(47, 42, 38, 0.22);
+  box-sizing: border-box;
+}
+
+.timeline-content h3 {
+  margin: 0 0 0.35rem 0;
+  font-size: 1.9rem;
+  line-height: 1.2;
+}
+
+.timeline-content p {
+  margin: 0;
+  max-width: 48rem;
+  color: #5e5852;
+  line-height: 1.65;
+}
+
+@media (max-width: 700px) {
+  .ideas-timeline {
+    padding-left: 2rem;
+  }
+
+  .timeline-dot {
+    left: -1.7rem;
+  }
+
+  .timeline-content h3 {
+    font-size: 1.5rem;
+  }
+}
+
 .article-title {
   margin-top: 0.1rem;
   font-size: clamp(3rem, 5vw, 3.5rem);
