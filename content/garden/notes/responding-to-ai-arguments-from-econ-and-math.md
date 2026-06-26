@@ -39,11 +39,9 @@ The note can collect:
 - Where do both traditions underestimate workflow design and human judgment?
 - Which arguments should grow into standalone essays later?
 
-## Citations to add
+## Sources so far
 
 - [[https://www.bostonreview.net/articles/knowledge-collapse/|Knowledge Collapse]]
 - [[https://economics.mit.edu/sites/default/files/2026-05/AI%2C%20Human%20Cognition%20and%20Knowledge%20Collapse%2005-05-26.pdf|AI, Human Cognition and Knowledge Collapse]]
-- [Local copy of Boston Review article](../../private/references/knowledge-collapse-boston-review.html)
-- [Local copy of MIT PDF](../../private/references/ai-human-cognition-and-knowledge-collapse.pdf)
-- Add mathematics sources here.
-- Add applied-statistics counterpoints here.
+
+This list will grow as the note collects economics and mathematics arguments alongside applied-statistics counterpoints.

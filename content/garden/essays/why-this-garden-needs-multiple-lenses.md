@@ -1,101 +1,26 @@
 ---
 title: "Why This Garden Needs Multiple Lenses"
-description: "A growing overview essay on the goals of the garden and the need to think from student to researcher to manager."
+description: "Data science only makes sense when the student, researcher, practitioner, and manager lenses are held together — and why a garden is the right form for that."
 kind: essay
-status: seed
-version: v1
+status: growing
+version: v2
 topics: [ai-workflows, research, software-methods, statistics]
 tags: [essay, overview, codexbatman]
 date: 2026-06-16
-updated: 2026-06-16
+updated: 2026-06-25
 draft: false
 sketch: ""
 ---
 
-This garden is not only a place to collect thoughts about AI, statistics, and workflows. It is also a place to build a multi-lens view of data science that can move between student, researcher, practitioner, and manager without flattening those roles into one generic perspective.
+Data science is usually discussed from one vantage point at a time: the classroom, the research frontier, the production team, the manager's dashboard. Each view is coherent on its own and slightly wrong about the others. The field only really makes sense when those lenses are held together — when you can ask, about the same problem, what a student should learn from it, what a researcher actually needs, what survives real constraints, and what a manager can evaluate.
 
-That is also part of the point of CodexBatman.
+That is what this garden is for. (For who it's written for, and how the seed-to-essay stages work, see the [[about|About]] page.) The reason AI raises the stakes is that it changes each lens differently. It can give a student answers without understanding, hand a researcher speed without judgment, give a practitioner fluency that hides weak reasoning, and give a manager output that looks like progress. A single-lens treatment misses this; you have to move between roles to see where AI helps and where it quietly substitutes for thinking.
 
-The project is not simply about using AI tools more efficiently. It is about building systems that help different people in the data science ecosystem make better judgments from where they stand.
+A digital garden is the right form because these ideas do not arrive in finished order. Some begin as short AI notes, some as technical reflections on a method or a paper, and some only make sense after repeated comparison across roles. The garden is a place for slow synthesis rather than fast publishing.
 
-## Working claim
-
-Data science is often discussed from a single vantage point:
-
-- the classroom
-- the research frontier
-- the production team
-- the manager's dashboard
-
-But the field only really makes sense when those lenses are kept in view together.
-
-Students need scaffolding.
-
-Researchers need flexible, inspectable workflows.
-
-Practitioners need methods that survive real constraints.
-
-Managers need systems that improve team judgment rather than only accelerate output.
-
-This garden exists to hold that full conversation in one place.
-
-## Why the garden matters
-
-A digital garden is a useful format for this because the relevant ideas do not arrive in finished order.
-
-Some thoughts begin as short AI notes.
-
-Some begin as technical reflections on a method, a workflow, or a paper.
-
-Some need to grow through repeated comparison across roles:
-
-- what should a student learn?
-- what does a researcher actually need?
-- what can a manager evaluate?
-- what should remain intentionally manual?
-
-That structure makes the garden different from a standard blog and also different from product documentation.
-
-It is a place for slow synthesis.
-
-## Why CodexBatman matters
-
-CodexBatman is the more operational companion.
-
-If the garden is where ideas are made explicit, CodexBatman is where those ideas can become workflows, templates, tools, and systems.
-
-The long-term value of that pairing is that conceptual writing and practical infrastructure can inform each other:
-
-- the garden names the judgment problem
-- CodexBatman tests a workflow response
-- the results come back into the garden as notes, patterns, and essays
-
-## The lenses to keep active
-
-### Student
-
-What helps someone learn statistical thinking instead of just generating answers?
-
-### Researcher
-
-What helps someone turn papers, assumptions, and methods into reproducible analytical practice?
-
-### Practitioner
-
-What helps someone do careful work under time, data, and organizational constraints?
-
-### Manager
-
-What helps someone build teams and systems where AI increases judgment rather than hiding weak reasoning behind fluent output?
+It also has an operational companion. If the garden is where the judgment problem gets named, **CodexBatman** is where a response gets built and tested as actual workflows, templates, and tools. The two feed each other: the garden names the problem, CodexBatman tries a workflow, and the results come back as notes, patterns, and essays.
 
 ## Open questions
 
-- What content should be written separately for each lens?
-- Which ideas should be written once and then reframed across lenses?
-- How should the homepage signal this multi-lens structure without becoming too instructional?
-
-## Next sections to write
-
-- A section on why AI changes each lens differently.
-- A section linking the garden to training, research, and management in data science.
-- A section on how CodexBatman acts as the operational arm of the same project.
+- Which ideas should be written once and reframed across lenses, and which need a separate treatment per role?
+- How should the homepage signal this multi-lens structure without becoming instructional or corporate?

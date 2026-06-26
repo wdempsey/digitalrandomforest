@@ -26,7 +26,6 @@ It is to surface what they teach about:
 ## Source trail
 
 - [[https://link.springer.com/chapter/10.1007/978-3-031-14275-8_11|Peter McCullagh, "Basic Concepts" in Ten Projects in Applied Statistics]]
-- [Local copy of Springer chapter page](../../private/references/mccullagh-basic-concepts-springer.html)
 
 ## Why use a Cox lens
 

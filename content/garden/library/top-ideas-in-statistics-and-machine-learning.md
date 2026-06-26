@@ -25,8 +25,6 @@ From there, I want to augment the sequence with:
 ## Source trail
 
 - [[https://ledaliang.github.io/journalclub/|Stanford Statistics 319: Statistical Ideas that Changed the World]]
-- [Local copy of Stanford journal club](../../private/references/stanford-statistical-ideas-journalclub.html)
-- [Local copy of Roderick Little PDF](../../private/references/roderick-little-seminal-ideas-and-controversies.pdf)
 
 ## Why this sequence matters
 
