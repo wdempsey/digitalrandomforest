@@ -14,11 +14,14 @@ sketch: ""
 
 Essays are where note fragments are reorganized into clear claims.
 
-Read from either direction:
+Start here:
 
-- ecosystem-first: [[garden/essays/why-data-sciences-future-is-an-ecosystem-story|Why Data Science's Future Is an Ecosystem Story]]
-- garden-first: [[garden/essays/why-this-garden-needs-multiple-lenses|Why This Garden Needs Multiple Lenses]]
-- concept-first: [[garden/essays/ai-copilot-for-statistical-thinking|AI as a Copilot for Statistical Thinking]]
-- workflow-first: [[garden/essays/what-makes-a-reproducible-workflow|What Makes a Reproducible AI Workflow?]]
+- [[garden/essays/why-data-sciences-future-is-an-ecosystem-story|Why Data Science's Future Is an Ecosystem Story]] — the anchor argument of the garden.
+
+Then, if it's useful:
+
+- [[garden/essays/why-this-garden-needs-multiple-lenses|Why This Garden Needs Multiple Lenses]] — what the project is and why it moves between roles.
+- [[garden/essays/ai-copilot-for-statistical-thinking|AI as a Copilot for Statistical Thinking]] — where models help in statistics, and where they shouldn't.
+- [[garden/essays/what-makes-a-reproducible-workflow|What Makes a Reproducible AI Workflow?]] — a working definition of reproducibility for LLM-assisted work.
 
 For shorter stepping stones, continue into [[garden/notes/index|Notes]].

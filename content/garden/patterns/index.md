@@ -14,6 +14,8 @@ sketch: ""
 
 Patterns are compact structures you can reuse across projects.
 
+This section is still emerging — there's only one entry so far, so it currently lives alongside [[garden/notes/index|Notes]] rather than as its own part of the garden. It will return as a top-level section once a few more patterns have grown up.
+
 - [[garden/patterns/paper-to-prototype-loop|Paper-to-Prototype Loop]]
 
-Patterns usually connect practical workflow moves back to a methods claim. For deeper rationale, follow into [[garden/essays/index|Essays]] or [[garden/library/index|Library]].
+Patterns usually connect a practical workflow move back to a methods claim. For deeper rationale, follow into [[garden/essays/index|Essays]] or [[garden/library/index|Library]].

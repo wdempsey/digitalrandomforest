@@ -18,13 +18,12 @@ The garden is arranged for calm wandering: start with a question, then move acro
 
 - [[garden/essays/index|Essays]] for developed arguments.
 - [[garden/notes/index|Notes]] for active working thoughts.
-- [[garden/patterns/index|Patterns]] for reusable workflows.
 - [[garden/library/index|Library]] for polished literature notes.
 
 ## Suggested Wanders
 
-1. [[garden/notes/identification-before-automation|Identification Before Automation]] -> [[garden/library/double-machine-learning-summary|Double Machine Learning: Reading Notes]] -> [[garden/essays/ai-copilot-for-statistical-thinking|AI as a Copilot for Statistical Thinking]]
-2. [[garden/patterns/paper-to-prototype-loop|Paper-to-Prototype Loop]] -> [[garden/essays/what-makes-a-reproducible-workflow|What Makes a Reproducible AI Workflow?]]
+1. [[garden/essays/why-data-sciences-future-is-an-ecosystem-story|Why Data Science's Future Is an Ecosystem Story]] -> [[garden/notes/researchers-are-not-end-point-verifiers|Researchers Are Not End-Point Verifiers]] -> [[garden/notes/academics-as-ai-managers|Academics as AI Managers]]
+2. [[garden/notes/identification-before-automation|Identification Before Automation]] -> [[garden/library/double-machine-learning-summary|Double Machine Learning: Reading Notes]] -> [[garden/essays/ai-copilot-for-statistical-thinking|AI as a Copilot for Statistical Thinking]]
 
 ## Topic Entrances
 
