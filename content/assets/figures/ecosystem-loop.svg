@@ -1,0 +1,56 @@
+<svg viewBox="0 0 680 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d">
+  <title id="t">The ecosystem loop</title>
+  <desc id="d">Four stages — models, workflows and traces, evaluation, and judgment and memory — connected by curving arrows in a clockwise cycle that compounds over time.</desc>
+  <defs>
+    <style>
+      .ink { stroke: #6f8c7a; }
+      .node { fill: #eef2ef; }
+      .lbl { fill: #2f2a26; font-family: "Source Serif 4", Georgia, serif; font-size: 20px; }
+      .cap { fill: #6f8c7a; font-family: "Source Serif 4", Georgia, serif; font-style: italic; font-size: 15px; }
+      .ah { fill: #6f8c7a; }
+      @media (prefers-color-scheme: dark) {
+        .ink { stroke: #9bb1a3; }
+        .node { fill: rgba(155, 177, 163, 0.14); }
+        .lbl { fill: #f0e9dc; }
+        .cap { fill: #9bb1a3; }
+        .ah { fill: #9bb1a3; }
+      }
+    </style>
+    <filter id="rough" x="-6%" y="-6%" width="112%" height="112%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.013" numOctaves="2" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <marker id="ah" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" class="ah"/>
+    </marker>
+  </defs>
+
+  <g filter="url(#rough)" fill="none" stroke-width="2.4" stroke-linecap="round">
+    <ellipse class="ink node" cx="340" cy="78" rx="96" ry="44"/>
+    <ellipse class="ink node" cx="560" cy="220" rx="104" ry="46"/>
+    <ellipse class="ink node" cx="340" cy="362" rx="100" ry="44"/>
+    <ellipse class="ink node" cx="120" cy="220" rx="104" ry="46"/>
+
+    <path class="ink" marker-end="url(#ah)" d="M 415 112 Q 522 122 506 176"/>
+    <path class="ink" marker-end="url(#ah)" d="M 528 266 Q 514 344 432 350"/>
+    <path class="ink" marker-end="url(#ah)" d="M 248 350 Q 150 344 168 262"/>
+    <path class="ink" marker-end="url(#ah)" d="M 150 176 Q 168 122 262 112"/>
+
+    <path class="ink" marker-end="url(#ah)" d="M 352 198 A 15 15 0 1 1 333 187" stroke-width="2"/>
+  </g>
+
+  <g text-anchor="middle">
+    <text class="lbl" x="340" y="85">Models</text>
+
+    <text class="lbl" x="560" y="214">Workflows</text>
+    <text class="lbl" x="560" y="238">&amp; traces</text>
+
+    <text class="lbl" x="340" y="356">Evaluation</text>
+    <text class="lbl" x="340" y="380">loops</text>
+
+    <text class="lbl" x="120" y="214">Judgment</text>
+    <text class="lbl" x="120" y="238">&amp; memory</text>
+
+    <text class="cap" x="340" y="250">compounds over time</text>
+  </g>
+</svg>

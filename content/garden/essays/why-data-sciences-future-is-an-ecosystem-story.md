@@ -10,8 +10,8 @@ tags: [essay, ecosystem, open-source, reproducibility]
 date: 2026-06-16
 updated: 2026-06-25
 draft: false
-sketch: "/assets/sketches/ecosystem-loop.svg"
-sketchAlt: "A compounding loop — models, workflows and traces, evaluation, judgment and memory — feeding back into one another over time"
+sketch: "/assets/figures/ecosystem-hero.webp"
+sketchAlt: "An open research notebook with a soft loop of arrows rising from the page, linking a computer chip, a flow of connected boxes, a checkmark, and a lightbulb — a cycle that feeds itself"
 ---
 
 Every few months a better model arrives, and a familiar reflex follows: re-tool around it, re-run the benchmarks, treat the field as reset. The model is the asset. Swap in the best one and you are ahead; fall behind on it and you are behind.
@@ -26,6 +26,8 @@ It builds on four sources: a frontier-ecosystem argument from the organizational
 - [[https://arxiv.org/abs/2310.00865|David Donoho, Data Science at the Singularity]]
 - [[https://www.youtube.com/watch?v=2n41YjR5QfU&t=1s|Ecosystems as co-evolving networks]]
 - [[https://dora.dev/research/2025/dora-report/|DORA, State of AI-assisted Software Development 2025]]
+
+![A clockwise loop of four stages — models, workflows and traces, evaluation loops, and judgment and memory — each arrow feeding into the next.](/assets/figures/ecosystem-loop.svg "The ecosystem loop: models, workflows and traces, evaluation, and judgment and memory feed back into one another — each pass compounds.")
 
 ## What an ecosystem advantage actually is
 
@@ -45,9 +47,11 @@ It is how to build an ecosystem that keeps producing better judgment as models c
 
 David Donoho's account of recent AI progress is a useful corrective to singularity rhetoric.
 
-His argument is that the striking acceleration of empirical machine learning came from a transition to frictionless reproducibility. In his framing, the important ingredients are not mysterious superintelligence but mature systems of data sharing, code sharing, and competitive challenges.
+His argument is that the striking acceleration of empirical machine learning came from a transition to frictionless reproducibility.[^fr] In his framing, the important ingredients are not mysterious superintelligence but mature systems of data sharing, code sharing, and competitive challenges.
 
 "Frictionless reproducibility" is simpler than it sounds. For most of the history of empirical research, reusing someone else's result meant re-deriving it: re-collecting the data, re-implementing the method, guessing at the settings buried in a methods section. Donoho's point is that this friction collapsed. When data is shared openly, code is published alongside the paper, and a public benchmark defines what counts as progress, a new idea can be tested against everything that came before it in an afternoon rather than a year. The cost of one cycle of test-and-improve fell toward zero, and the rate of progress rose to match.
+
+![A small seed-idea sliding effortlessly down a gently sloping open channel across warm paper, past flattened bumps where obstacles used to be.](/assets/figures/donoho-seed.webp "Frictionless reproducibility: when data, code, and benchmarks are shared, an idea slides from one test to the next almost without resistance.")
 
 You can see the same machinery underneath everyday data science. R and Python were never just languages; CRAN, PyPI, scikit-learn, Hugging Face datasets and model hubs, Kaggle leaderboards, and reproducible notebooks are coordination systems. They let a good idea spread and a weak one fail in the open, fast. The acceleration we attribute to clever models is, in large part, the acceleration of an ecosystem that made ideas cheap to share and cheap to check.
 
@@ -65,6 +69,9 @@ For a research group the translation is direct. The base model is rented and int
 
 ## The synthesis
 
+> [!quote] What "ecosystem" means here
+> A dynamic network of interdependent actors that co-evolve with their environment, characterized by emergent behavior and decentralized agency.
+
 Taken together, these two pieces suggest that the future of data science is an ecosystem story.
 
 Donoho helps explain why open, reproducible ecosystems accelerated progress in the last wave of empirical machine learning.
@@ -78,6 +85,8 @@ Emergent behavior is the key new element. A pipeline is designed to produce a kn
 That makes modern data science a socio-technical ecosystem, not merely a technical discipline with better automation. The software, models, datasets, institutions, incentives, and professional norms are now tightly coupled. As a result, the ecosystem will reflect the values of the people who build and maintain it. If data scientists value reproducibility, openness, careful uncertainty, domain knowledge, public accountability, and human judgment, those values need to appear in the infrastructure itself: in how workflows are logged, how claims are checked, how tools are shared, how errors are surfaced, how expertise is credited, and how decisions remain contestable. If we do not make those values explicit, the ecosystem will still have values, but they will be inherited from vendor incentives, benchmark pressure, institutional convenience, or whatever is easiest to automate.
 
 This is why the argument has to be systems-first. DORA's 2025 report describes AI as an amplifier, magnifying an organization's existing strengths and weaknesses. For data science, I want a slightly sharper version: AI is a force multiplier or a force divider. If the force is pointed in the right direction, AI can multiply good taste, good decomposition, good evaluation, good feedback loops, and good judgment. If the force is pointed in the wrong direction, it can multiply confusion just as quickly. A poorly scoped project, a weak student model of the problem, a bad metric, a brittle workflow, or a culture that rewards looking productive can all become more damaging when AI makes every loop faster. The question is not whether AI makes individuals ten times faster. The question is whether the system is aiming that speed at learning, error correction, and better judgment, or at producing more artifacts from a flawed direction.
+
+![A single watering can pouring onto two garden plots — one grows neat, flourishing rows, the other erupts into tangled weeds and scribbles.](/assets/figures/dora.webp "Force multiplier or force divider: the same AI poured over good and bad direction grows orderly rows on one side and tangle on the other.")
 
 The bridge between the two is simple:
 
@@ -110,8 +119,4 @@ One important test case is process streamlining. DeepMind's work on [[https://de
 - How do we tell the difference between bureaucracy that is pure process drag and bureaucracy that protects useful feedback loops?
 - When does AI multiply the right force, and when does it divide attention, judgment, or institutional learning?
 
-## The moat is the loop
-
-It is worth saying plainly what universities, labs, and teams should build now, because it is unglamorous and easy to defer. Not a model. A loop: a private evaluation set that captures what good work means in your domain; a habit of logging the prompts, context, code, and decisions behind a result so it can be re-run and argued with; a small library of reusable patterns; and enough institutional memory that a departing student does not take the group's judgment with them. None of this requires the frontier. All of it compounds.
-
-This is the distinction I want a reader to leave with. A model is something you access. An ecosystem is something you accumulate. Access can be bought, copied, and out-competed the month a better model ships. What you have accumulated — the loops, the traces, the encoded judgment — is the part no vendor can hand your competitor. Model access is not the moat. The learning ecosystem is.
+[^fr]: "Frictionless reproducibility" is David Donoho's term, from *Data Science at the Singularity* (2023) — see the linked paper above.

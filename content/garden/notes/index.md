@@ -24,6 +24,7 @@ Current threads:
 - [[garden/notes/llm-context-budget-for-research|LLM Context Budget for Research]]
 - [[garden/notes/responding-to-ai-arguments-from-econ-and-math|Responding to AI Arguments from Econ and Math]]
 - [[garden/notes/interviewing-the-field|Interviewing the Field]]
+- [[garden/notes/everything-is-a-muscle|Everything Is a Muscle]]
 
 Workflow notes:
 

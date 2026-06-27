@@ -19,6 +19,7 @@ The rule is simple: if an idea has a clear claim, it can become a seed note. If 
 ## Active candidates
 
 - [[garden/notes/academics-as-ai-managers|Academics as AI Managers]]: academics may be unusually well suited to AI work because project scoping and delegation are already central research-management skills.
+- [[garden/notes/everything-is-a-muscle|Everything Is a Muscle]]: skills degrade gracefully or silently; over-delegating writing to LLMs atrophies the silently-degrading muscles (voice, thinking-through-writing) that you can't tell have thinned.
 - Researchers are not end-point verifiers: AI changes where judgment happens; researchers need to stay inside the reasoning loop.
 - EM and variational methods: a short technical bridge between EM, lower bounds, latent variables, and variational approximations.
 - Econ and math arguments about AI: collect citations and clarify what they miss about applied data science practice.
