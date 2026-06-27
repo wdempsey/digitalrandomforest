@@ -18,7 +18,7 @@ const config: QuartzConfig = {
       cdnCaching: true,
       typography: {
         header: "Source Serif 4",
-        body: "Inter",
+        body: "Newsreader",
         code: "IBM Plex Mono",
       },
       colors: {
@@ -65,6 +65,8 @@ const config: QuartzConfig = {
       Plugin.GitHubFlavoredMarkdown(),
       Plugin.TableOfContents(),
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
+      Plugin.Figures(),
+      Plugin.Sidenotes(),
       Plugin.Description(),
     ],
     filters: [Plugin.RemoveDrafts()],
