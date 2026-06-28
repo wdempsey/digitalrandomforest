@@ -14,23 +14,41 @@ const observer = new IntersectionObserver((entries) => {
 })
 
 function toggleToc(this: HTMLElement) {
-  this.classList.toggle("collapsed")
-  this.setAttribute(
-    "aria-expanded",
-    this.getAttribute("aria-expanded") === "true" ? "false" : "true",
-  )
-  const content = this.nextElementSibling as HTMLElement | undefined
+  setTocCollapsed(this, !this.classList.contains("collapsed"))
+}
+
+function setTocCollapsed(button: HTMLElement, collapsed: boolean) {
+  button.classList.toggle("collapsed", collapsed)
+  button.setAttribute("aria-expanded", collapsed ? "false" : "true")
+  const content = button.nextElementSibling as HTMLElement | null
   if (!content) return
-  content.classList.toggle("collapsed")
+  content.classList.toggle("collapsed", collapsed)
 }
 
 function setupToc() {
   for (const toc of document.getElementsByClassName("toc")) {
-    const button = toc.querySelector(".toc-header")
-    const content = toc.querySelector(".toc-content")
+    const button = toc.querySelector<HTMLElement>(".toc-header")
+    const content = toc.querySelector<HTMLElement>(".toc-content")
     if (!button || !content) return
-    button.addEventListener("click", toggleToc)
-    window.addCleanup(() => button.removeEventListener("click", toggleToc))
+
+    let manuallyToggled = false
+    const onClick = () => {
+      manuallyToggled = true
+      toggleToc.call(button)
+    }
+    const onScroll = () => {
+      if (window.scrollY < 80) manuallyToggled = false
+      if (!manuallyToggled) setTocCollapsed(button, window.scrollY > 420)
+    }
+
+    button.addEventListener("click", onClick)
+    document.addEventListener("scroll", onScroll, { passive: true })
+    onScroll()
+
+    window.addCleanup(() => {
+      button.removeEventListener("click", onClick)
+      document.removeEventListener("scroll", onScroll)
+    })
   }
 }
 

@@ -19,13 +19,14 @@
   --type-small: 0.78rem;
 
   /* Measures and layout */
-  --reading-measure: 45rem;
+  --reading-measure: 62rem;
+  --figure-measure: 41rem;
   --essay-max-width: 2400px;
-  --essay-column: 1160px;
-  --left-rail: 240px;
+  --essay-column: 1300px;
+  --left-rail: 280px;
   --right-rail: 260px;
   --sidenote-gutter: 230px;
-  --layout-gap: 40px;
+  --layout-gap: 32px;
 
   /* Shared surfaces */
   --accent: #6f8c7a;
@@ -143,6 +144,11 @@ h6 {
   max-width: var(--reading-measure);
   color: var(--text-primary);
   font-family: var(--bodyFont);
+}
+
+body:not([data-slug="index"]) .page article {
+  width: 100%;
+  margin-inline: auto;
 }
 
 .page article p,
@@ -278,6 +284,54 @@ body:not([data-slug="index"]):not(:has(.sidebar.left .toc))
 }
 
 @media (min-width: 1200px) {
+  :root {
+    --type-reading: clamp(1.4375rem, 1.35rem + 0.12vw, 1.5625rem);
+    --type-h1: clamp(3.4rem, 3rem + 1vw, 4rem);
+    --type-h2: clamp(1.9rem, 1.72rem + 0.35vw, 2.2rem);
+    --type-h3: clamp(1.4rem, 1.3rem + 0.25vw, 1.6rem);
+  }
+
+  body:has(.sidebar.left .toc) {
+    --type-meta: 1.1rem;
+    --type-nav: clamp(1.25rem, 1.15rem + 0.18vw, 1.4375rem);
+    --type-rail-link: 1.1rem;
+    --type-rail-heading: 1rem;
+  }
+}
+
+/* Compact desktop: keep the TOC, but let backlinks and sidenotes move out of
+   the way so the reading column never collapses into a narrow strip. */
+@media (min-width: 1200px) and (max-width: 1919px) {
+  body:has(.sidebar.left .toc) .page {
+    max-width: 96vw;
+  }
+
+  body:has(.sidebar.left .toc) .page > #quartz-body {
+    grid-template-columns: 240px minmax(0, 1fr);
+    grid-template-areas:
+      "grid-sidebar-left grid-header"
+      "grid-sidebar-left grid-center"
+      "grid-sidebar-left grid-footer";
+    column-gap: var(--layout-gap);
+    row-gap: 0.6rem;
+  }
+
+  body:has(.sidebar.left .toc) .sidebar.right {
+    display: none;
+  }
+
+  body:has(.sidebar.left .toc) .center,
+  body:has(.sidebar.left .toc) .center > article {
+    max-width: 100%;
+  }
+
+  body:has(.sidebar.left .toc) .center > article {
+    max-width: var(--reading-measure);
+    margin-inline: auto;
+  }
+}
+
+@media (min-width: 1920px) {
   body:has(.sidebar.left .toc) .page {
     max-width: min(var(--essay-max-width), 96vw);
   }
@@ -297,14 +351,14 @@ body:not([data-slug="index"]):not(:has(.sidebar.left .toc))
   }
 
   body:has(.sidebar.left .toc) .center,
-  body:has(.sidebar.left .toc) .center > article,
-  body:has(.sidebar.left .toc) .essay-sketch,
-  body:has(.sidebar.left .toc) .figure,
-  body:has(.sidebar.left .toc) .figure-gallery {
+  body:has(.sidebar.left .toc) .center > article {
     max-width: 100%;
   }
 
   body:has(.sidebar.left .toc) .center > article {
+    width: min(100%, calc(var(--reading-measure) + var(--sidenote-gutter)));
+    max-width: calc(var(--reading-measure) + var(--sidenote-gutter));
+    margin-inline: auto;
     box-sizing: border-box;
     padding-right: var(--sidenote-gutter);
   }
@@ -386,8 +440,74 @@ body:not([data-slug="index"]):not(:has(.sidebar.left .toc))
   color: var(--text-secondary);
 }
 
+@media (min-width: 1200px) {
+  body:has(.sidebar.left .toc) .sidebar.left {
+    padding-inline: 0.75rem;
+  }
+
+  .sidebar.left .toc {
+    width: 100%;
+    padding: 0.35rem 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+
+  .sidebar.left .toc a,
+  .sidebar.left .toc .toc-header h3 {
+    font-family: inherit;
+  }
+
+  .sidebar.left .toc .toc-header {
+    width: 100%;
+    gap: 0.55rem;
+  }
+
+  .sidebar.left .toc .toc-header::before {
+    content: "";
+    flex: 0 0 0.45rem;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .sidebar.left .toc .toc-header h3 {
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .sidebar.left .toc .toc-header .fold {
+    margin-left: auto;
+  }
+
+  .sidebar.left .toc .toc-content {
+    margin-top: 0.9rem;
+  }
+
+  .sidebar.left .toc .toc-content > li + li {
+    margin-top: 0.55rem;
+  }
+
+  .sidebar.left .toc .toc-content > li > a {
+    display: block;
+    hyphens: none;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+}
+
 .sidebar.left .toc .toc-content {
   margin-top: 0.35rem;
+}
+
+.sidebar.left .toc .toc-content.collapsed {
+  display: none;
+}
+
+.sidebar.left .toc .toc-header.collapsed h3 {
+  margin-bottom: 0;
 }
 
 .sidebar.left .toc .toc-content > li > a {
@@ -451,7 +571,8 @@ body:not([data-slug="index"]):not(:has(.sidebar.left .toc))
 .figure,
 .figure-gallery {
   width: 100%;
-  margin: 2.2rem 0;
+  max-width: var(--figure-measure);
+  margin: 2.2rem auto;
 }
 
 .figure img,
@@ -506,8 +627,15 @@ body:not([data-slug="index"]):not(:has(.sidebar.left .toc))
 }
 
 .essay-sketch {
-  max-width: var(--reading-measure);
-  margin: 1.6rem 0 2.2rem;
+  max-width: var(--figure-measure);
+  margin: 1.6rem auto 2.2rem;
+}
+
+@media (min-width: 1920px) {
+  body:has(.sidebar.left .toc) .page-header .essay-sketch {
+    margin-left: calc((100% - var(--sidenote-gutter) - var(--figure-measure)) / 2);
+    margin-right: auto;
+  }
 }
 
 .essay-sketch img {
@@ -528,12 +656,32 @@ body:not([data-slug="index"]):not(:has(.sidebar.left .toc))
    -------------------------------------------------------------------------- */
 
 .callout[data-callout="quote"] {
-  margin: 2.2rem 0;
-  padding: 1.5rem 1.7rem;
-  border: 1px solid var(--border-strong);
-  border-radius: 12px;
-  background: var(--paper-card);
+  max-width: 42rem;
+  margin: 3.5rem auto;
+  padding: 1.4rem 2rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   box-shadow: none;
+  text-align: center;
+}
+
+.callout[data-callout="quote"]::before,
+.callout[data-callout="quote"]::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 1px;
+  margin-inline: auto;
+  background: var(--border-strong);
+}
+
+.callout[data-callout="quote"]::before {
+  margin-bottom: 1.35rem;
+}
+
+.callout[data-callout="quote"]::after {
+  margin-top: 1.35rem;
 }
 
 .callout[data-callout="quote"] .callout-icon {
@@ -541,24 +689,26 @@ body:not([data-slug="index"]):not(:has(.sidebar.left .toc))
 }
 
 .callout[data-callout="quote"] .callout-title {
-  margin-bottom: 0.7rem;
+  justify-content: center;
+  margin-bottom: 0.8rem;
 }
 
 .callout[data-callout="quote"] .callout-title-inner {
   color: var(--text-secondary);
   font-family: var(--bodyFont);
-  font-size: 0.74rem;
+  font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }
 
 .page article .callout[data-callout="quote"] .callout-content p {
-  margin: 0.25rem 0;
+  max-width: 36rem;
+  margin: 0.25rem auto;
   color: var(--text-primary);
   font-family: var(--headerFont);
-  font-size: 1.18rem;
-  line-height: 1.5;
+  font-size: clamp(1.6rem, 1.45rem + 0.35vw, 1.95rem);
+  line-height: 1.42;
 }
 
 .footnotes {
@@ -586,7 +736,7 @@ body:not([data-slug="index"]):not(:has(.sidebar.left .toc))
 
 .page article .footnotes li {
   margin: 0.4rem 0;
-  font-size: 0.92rem;
+  font-size: 1rem;
   line-height: 1.55;
 }
 
@@ -608,8 +758,8 @@ body:not([data-slug="index"]):not(:has(.sidebar.left .toc))
 .sidenote {
   color: var(--text-secondary);
   font-family: var(--bodyFont);
-  font-size: 0.8rem;
-  line-height: 1.5;
+  font-size: 1.125rem;
+  line-height: 1.48;
 }
 
 .sidenote-num,
@@ -627,17 +777,20 @@ body:not([data-slug="index"]):not(:has(.sidebar.left .toc))
   font-size: 0.72em;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1920px) {
   body:has(.sidebar.left .toc) .sidenote {
     float: right;
     clear: right;
-    width: 200px;
+    box-sizing: border-box;
+    width: 210px;
     margin: 0.15rem calc(-1 * var(--sidenote-gutter)) 1rem 0;
+    padding-left: 0.75rem;
+    border-left: 1px solid var(--border-strong);
     text-align: left;
   }
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 1919px) {
   .sidenote {
     display: block;
     margin: 0.7rem 0;

@@ -115,10 +115,13 @@ export const Sidenotes: QuartzTransformerPlugin = () => {
                         properties: { className: ["sidenote-ref"] },
                         children: [{ type: "text", value: num }],
                       }
+                      // A footnote reference lives inside a paragraph. Keep the generated
+                      // note phrasing-valid so the browser does not split that paragraph
+                      // and strand the prose following the reference outside its <p>.
                       const aside: Element = {
                         type: "element",
-                        tagName: "aside",
-                        properties: { className: ["sidenote"] },
+                        tagName: "span",
+                        properties: { className: ["sidenote"], role: "note" },
                         children: [
                           {
                             type: "element",
