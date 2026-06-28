@@ -299,25 +299,42 @@ body:not([data-slug="index"]):not(:has(.sidebar.left .toc))
   }
 }
 
-/* Compact desktop: keep the TOC, but let backlinks and sidenotes move out of
-   the way so the reading column never collapses into a narrow strip. */
-@media (min-width: 1200px) and (max-width: 1919px) {
+/* Laptop and compact desktop: keep both navigation rails available without
+   squeezing the reading column. Narrower viewports retain Quartz's bottom
+   placement for backlinks. */
+@media (min-width: 1024px) and (max-width: 1919px) {
   body:has(.sidebar.left .toc) .page {
     max-width: 96vw;
   }
 
   body:has(.sidebar.left .toc) .page > #quartz-body {
-    grid-template-columns: 240px minmax(0, 1fr);
+    grid-template-columns:
+      minmax(10rem, 13rem)
+      minmax(0, 1fr)
+      minmax(12rem, 14rem);
     grid-template-areas:
-      "grid-sidebar-left grid-header"
-      "grid-sidebar-left grid-center"
-      "grid-sidebar-left grid-footer";
-    column-gap: var(--layout-gap);
+      "grid-sidebar-left grid-header grid-sidebar-right"
+      "grid-sidebar-left grid-center grid-sidebar-right"
+      "grid-sidebar-left grid-footer grid-sidebar-right";
+    column-gap: clamp(1rem, 2vw, var(--layout-gap));
     row-gap: 0.6rem;
   }
 
-  body:has(.sidebar.left .toc) .sidebar.right {
-    display: none;
+  body:has(.sidebar.left .toc) .page > #quartz-body > .sidebar.right {
+    position: sticky;
+    top: 0;
+    display: flex;
+    width: auto;
+    height: 100vh;
+    margin: 0;
+    padding: 6rem 0.5rem 2rem;
+    flex-direction: column;
+    align-self: start;
+  }
+
+  body:has(.sidebar.left .toc) .page > #quartz-body > .sidebar.right > * {
+    flex: initial;
+    max-height: 100%;
   }
 
   body:has(.sidebar.left .toc) .center,
