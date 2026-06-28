@@ -24,6 +24,8 @@ The second is how the skill **degrades over time**. Athletic skill degrades *vis
 
 The dangerous quadrant is the implicit skill that degrades silently. There is no radar gun to tell you it has happened.
 
+![A two-by-two of how skills degrade: explicit versus implicit on the horizontal axis, visible versus silent decay on the vertical. Taking a derivative is explicit and its rust is visible; a baseball swing is implicit and visibly slows; mental arithmetic is explicit but quietly outsourced; writing your own prose is implicit and atrophies unnoticed — the dangerous quadrant.](/assets/figures/everything-is-a-muscle-matrix.svg "Skills sorted by how they're stored and how their decay shows — the silent, implicit corner is the one to watch.")
+
 ## What economists call this
 
 Economists study this under **human capital depreciation**, and the vocabulary is sharper than the gym metaphor. Technical skill obsolescence splits into two mechanisms: *wear*, where a skill erodes through overuse, and *atrophy*, where it erodes through disuse — the literal "use it or lose it." Distinct from both is *economic* obsolescence, where your skill is intact but the market price of it falls because the world changed around you. ([Walter & Lee, task-based view of depreciation](https://archive.headconf.org/head21/wp-content/uploads/pdfs/13078.pdf))

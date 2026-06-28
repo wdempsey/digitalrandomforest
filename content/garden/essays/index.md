@@ -25,3 +25,9 @@ Then, if it's useful:
 - [[garden/essays/what-makes-a-reproducible-workflow|What Makes a Reproducible AI Workflow?]] — a working definition of reproducibility for LLM-assisted work.
 
 For shorter stepping stones, continue into [[garden/notes/index|Notes]].
+
+---
+
+Scaffolding:
+
+- [[garden/essays/talk-to-essay-template|Talk-to-Essay Template]] — a reusable structure for turning a paper or conference talk into an illustrated essay.

@@ -1,0 +1,24 @@
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Slide placeholder">
+  <defs>
+    <style>
+      .pp-bg   { fill: #f3efe7; }
+      .pp-ink  { stroke: #6f8c7a; fill: none; }
+      .pp-soft { fill: #6f8c7a; opacity: 0.5; }
+      @media (prefers-color-scheme: dark) {
+        .pp-bg   { fill: rgba(155,177,163,0.10); }
+        .pp-ink  { stroke: #9bb1a3; }
+        .pp-soft { fill: #9bb1a3; opacity: 0.55; }
+      }
+    </style>
+    <filter id="pp-rough" filterUnits="userSpaceOnUse" x="0" y="0" width="1200" height="800">
+      <feTurbulence type="fractalNoise" baseFrequency="0.009" numOctaves="2" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <rect class="pp-bg" x="0" y="0" width="1200" height="800" rx="14"/>
+  <g filter="url(#pp-rough)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <rect class="pp-ink" x="60" y="60" width="1080" height="680" rx="18"/>
+    <circle class="pp-soft" cx="430" cy="330" r="58"/>
+    <path class="pp-ink" d="M 120 660 L 470 380 L 690 560 L 880 410 L 1080 600" stroke-width="4"/>
+  </g>
+</svg>

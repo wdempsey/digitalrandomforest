@@ -9,7 +9,8 @@ tags: [about]
 date: 2026-03-07
 updated: 2026-03-07
 draft: false
-sketch: ""
+sketch: "/assets/figures/about-hero.webp"
+sketchAlt: "A quiet forest of hand-drawn trees growing across an open notebook — seedlings beside fuller, branching canopies, linked by faint dotted lines — a digital random forest of ideas that grow and connect over time."
 ---
 
 I’m a statistician and data scientist interested in how AI is changing the way we practice statistical thinking. This site is where I work through that shift in public.

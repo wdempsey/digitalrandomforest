@@ -1,0 +1,72 @@
+<svg viewBox="0 0 700 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d">
+  <title id="t">How skills degrade: a two-by-two</title>
+  <desc id="d">A matrix with explicit-versus-implicit skills on the horizontal axis and visible-versus-silent degradation on the vertical axis. Top-left: taking a derivative, an explicit skill whose rust you can feel. Top-right: a baseball swing, an implicit skill that visibly slows. Bottom-left: mental arithmetic, an explicit skill quietly outsourced. Bottom-right, highlighted as the dangerous quadrant: writing your own prose, an implicit skill that atrophies unnoticed.</desc>
+  <defs>
+    <style>
+      .ink   { stroke: #6f8c7a; }
+      .grid  { stroke: #b9b0a2; }
+      .lbl   { fill: #2f2a26; font-family: "Source Serif 4", Georgia, serif; font-size: 20px; }
+      .cap   { fill: #6f8c7a; font-family: "Source Serif 4", Georgia, serif; font-style: italic; font-size: 14px; }
+      .axis  { fill: #665e57; font-family: "Source Serif 4", Georgia, serif; font-size: 17px; letter-spacing: 0.04em; }
+      .danger-fill { fill: rgba(176, 137, 104, 0.13); }
+      .danger-note { fill: #b08968; font-family: "Source Serif 4", Georgia, serif; font-style: italic; font-size: 13.5px; }
+      .ah    { fill: #665e57; }
+      @media (prefers-color-scheme: dark) {
+        .ink   { stroke: #9bb1a3; }
+        .grid  { stroke: #6b6358; }
+        .lbl   { fill: #f0e9dc; }
+        .cap   { fill: #9bb1a3; }
+        .axis  { fill: #b9ae9f; }
+        .danger-fill { fill: rgba(196, 162, 128, 0.16); }
+        .danger-note { fill: #c9a47e; }
+        .ah    { fill: #b9ae9f; }
+      }
+    </style>
+    <filter id="rough" filterUnits="userSpaceOnUse" x="0" y="0" width="700" height="600">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="11" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <marker id="ah" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" class="ah"/>
+    </marker>
+  </defs>
+
+  <rect class="danger-fill" x="412" y="282" width="236" height="186" rx="6"/>
+
+  <g filter="url(#rough)" fill="none" stroke-width="2.2" stroke-linecap="round">
+    <rect class="ink" x="170" y="90" width="480" height="380" rx="8"/>
+    <line class="grid" x1="410" y1="92" x2="410" y2="468" stroke-width="1.8"/>
+    <line class="grid" x1="172" y1="280" x2="648" y2="280" stroke-width="1.8"/>
+  </g>
+
+  <g text-anchor="middle">
+    <text class="lbl" x="290" y="178">Taking a derivative</text>
+    <text class="cap" x="290" y="202">you feel the rust</text>
+
+    <text class="lbl" x="530" y="178">A baseball swing</text>
+    <text class="cap" x="530" y="202">the body visibly slows</text>
+
+    <text class="lbl" x="290" y="368">Mental arithmetic</text>
+    <text class="cap" x="290" y="392">quietly outsourced</text>
+
+    <text class="lbl" x="528" y="362" font-size="16">Writing your own prose</text>
+    <text class="cap" x="530" y="386">atrophies unnoticed</text>
+    <text class="danger-note" x="530" y="430">the dangerous quadrant</text>
+  </g>
+
+  <g filter="url(#rough)">
+    <line class="ink" x1="170" y1="512" x2="650" y2="512" stroke-width="2" marker-end="url(#ah)" marker-start="url(#ah)"/>
+  </g>
+  <g text-anchor="middle">
+    <text class="axis" x="290" y="540">Explicit</text>
+    <text class="axis" x="530" y="540">Implicit</text>
+  </g>
+
+  <g filter="url(#rough)">
+    <line class="ink" x1="128" y1="90" x2="128" y2="470" stroke-width="2" marker-end="url(#ah)"/>
+  </g>
+  <g text-anchor="middle">
+    <text class="axis" x="58" y="185" transform="rotate(-90 58 185)">Visible decay</text>
+    <text class="axis" x="58" y="375" transform="rotate(-90 58 375)">Silent decay</text>
+  </g>
+</svg>
