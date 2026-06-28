@@ -777,7 +777,14 @@ body:not([data-slug="index"]):not(:has(.sidebar.left .toc))
   font-size: 0.72em;
 }
 
-@media (min-width: 1920px) {
+@media (min-width: 1200px) {
+  body:has(.sidebar.left .toc) .center > article {
+    width: min(100%, calc(var(--reading-measure) + var(--sidenote-gutter)));
+    max-width: calc(var(--reading-measure) + var(--sidenote-gutter));
+    box-sizing: border-box;
+    padding-right: var(--sidenote-gutter);
+  }
+
   body:has(.sidebar.left .toc) .sidenote {
     float: right;
     clear: right;
@@ -790,7 +797,7 @@ body:not([data-slug="index"]):not(:has(.sidebar.left .toc))
   }
 }
 
-@media (max-width: 1919px) {
+@media (max-width: 1199px) {
   .sidenote {
     display: block;
     margin: 0.7rem 0;
