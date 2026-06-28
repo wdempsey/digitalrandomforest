@@ -299,8 +299,8 @@ body:not([data-slug="index"]):not(:has(.sidebar.left .toc))
   }
 }
 
-/* Compact desktop: keep the TOC and reserve an in-article gutter for sidenotes,
-   while allowing the secondary right rail to move below the article. */
+/* Compact desktop: keep the TOC, but let backlinks and sidenotes move out of
+   the way so the reading column never collapses into a narrow strip. */
 @media (min-width: 1200px) and (max-width: 1919px) {
   body:has(.sidebar.left .toc) .page {
     max-width: 96vw;
@@ -326,11 +326,8 @@ body:not([data-slug="index"]):not(:has(.sidebar.left .toc))
   }
 
   body:has(.sidebar.left .toc) .center > article {
-    width: min(100%, calc(var(--reading-measure) + var(--sidenote-gutter)));
-    max-width: calc(var(--reading-measure) + var(--sidenote-gutter));
+    max-width: var(--reading-measure);
     margin-inline: auto;
-    box-sizing: border-box;
-    padding-right: var(--sidenote-gutter);
   }
 }
 
@@ -781,6 +778,13 @@ body:not([data-slug="index"]):not(:has(.sidebar.left .toc))
 }
 
 @media (min-width: 1200px) {
+  body:has(.sidebar.left .toc) .center > article {
+    width: min(100%, calc(var(--reading-measure) + var(--sidenote-gutter)));
+    max-width: calc(var(--reading-measure) + var(--sidenote-gutter));
+    box-sizing: border-box;
+    padding-right: var(--sidenote-gutter);
+  }
+
   body:has(.sidebar.left .toc) .sidenote {
     float: right;
     clear: right;
