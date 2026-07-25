@@ -16,6 +16,9 @@ Notes hold active thinking: definitions, constraints, unresolved questions.
 
 Current threads:
 
+- [[garden/notes/mhealth-interventions-are-products|mHealth Interventions Are Products]]
+- [[garden/notes/the-legalism-of-academia|The Legalism of Academia]]
+- [[garden/notes/developing-in-public-is-not-enough|Developing in Public Is Not Enough]]
 - [[garden/notes/researchers-are-not-end-point-verifiers|Researchers Are Not End-Point Verifiers]]
 - [[garden/notes/academics-as-ai-managers|Academics as AI Managers]]
 - [[garden/notes/a-frontier-needs-an-ecosystem|A Frontier Needs an Ecosystem]]

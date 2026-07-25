@@ -18,6 +18,9 @@ The rule is simple: if an idea has a clear claim, it can become a seed note. If 
 
 ## Active candidates
 
+- [[garden/notes/mhealth-interventions-are-products|mHealth Interventions Are Products]]: use Paul Graham's product-learning frame to argue that mHealth clinical trials should treat engagement as part of the intervention system, not merely compliance.
+- [[garden/notes/the-legalism-of-academia|The Legalism of Academia]]: a Goodhart-adjacent note on how soft academic norms become rigid rules, producing consistency at the cost of judgment.
+- [[garden/notes/developing-in-public-is-not-enough|Developing in Public Is Not Enough]]: developing in public is too weak for AI-native scholarship; radical transparency should include blogs, harnesses, visible mistakes, and cross-field engagement while questions are still forming.
 - [[garden/notes/academics-as-ai-managers|Academics as AI Managers]]: academics may be unusually well suited to AI work because project scoping and delegation are already central research-management skills.
 - [[garden/notes/everything-is-a-muscle|Everything Is a Muscle]]: skills degrade gracefully or silently; over-delegating writing to LLMs atrophies the silently-degrading muscles (voice, thinking-through-writing) that you can't tell have thinned.
 - Researchers are not end-point verifiers: AI changes where judgment happens; researchers need to stay inside the reasoning loop.
