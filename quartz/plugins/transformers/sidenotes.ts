@@ -20,7 +20,11 @@ function classOf(n: any): string[] {
 function isRefAnchor(n: any): boolean {
   if (!n || n.type !== "element" || n.tagName !== "a") return false
   const h = n.properties && n.properties.href
-  return typeof h === "string" && h.startsWith("#user-content-fn-") && !h.startsWith("#user-content-fnref")
+  return (
+    typeof h === "string" &&
+    h.startsWith("#user-content-fn-") &&
+    !h.startsWith("#user-content-fnref")
+  )
 }
 
 function isBackref(n: any): boolean {

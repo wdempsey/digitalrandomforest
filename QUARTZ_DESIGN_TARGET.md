@@ -56,11 +56,13 @@ Body text: clean sans-serif
 Examples:
 
 Serif options:
+
 - Lora
 - Fraunces
 - Crimson
 
 Sans-serif options:
+
 - Inter
 - Source Sans
 - System UI

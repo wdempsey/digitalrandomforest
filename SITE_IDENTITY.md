@@ -74,16 +74,19 @@ Pages should feel like **essays or notes in a quiet study**, not technical docum
 The garden contains several kinds of writing.
 
 ### Essays
+
 Longer reflections or arguments.
 
 Usually polished but still evolving.
 
 ### Notes
+
 Shorter ideas, partial thoughts, or working explanations.
 
 These form the connective tissue of the garden.
 
 ### Patterns
+
 Reusable ideas about:
 
 - AI workflows
@@ -94,6 +97,7 @@ Reusable ideas about:
 These are often practical insights.
 
 ### Library
+
 Academic literature notes and research summaries.
 
 These are the most scholarly pieces on the site.

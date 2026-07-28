@@ -1,47 +1,61 @@
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { QuartzPluginData } from "../plugins/vfile"
-import { resolveRelative } from "../util/path"
+import { FullSlug, SimpleSlug, resolveRelative } from "../util/path"
 import { getDate } from "./Date"
 
-const sectionLinks = [
-  { label: "Essays", href: "garden/essays" },
-  { label: "Notes", href: "garden/notes" },
-  { label: "Library", href: "garden/library" },
+type NavLink = { label: string; href: SimpleSlug }
+
+const sectionLinks: NavLink[] = [
+  { label: "Essays", href: "garden/essays" as SimpleSlug },
+  { label: "Notes", href: "garden/notes" as SimpleSlug },
+  { label: "Library", href: "garden/library" as SimpleSlug },
 ]
 
-const topicLinks = [
-  { label: "AI Workflows", href: "topics/ai-workflows" },
-  { label: "Software & Methods", href: "topics/software-methods" },
-  { label: "Causal Inference", href: "topics/causal-inference" },
-  { label: "Statistics", href: "topics/statistics" },
-  { label: "mHealth", href: "topics/mhealth" },
+const topicLinks: NavLink[] = [
+  { label: "AI Workflows", href: "topics/ai-workflows" as SimpleSlug },
+  {
+    label: "Software & Methods",
+    href: "topics/software-methods" as SimpleSlug,
+  },
+  { label: "Causal Inference", href: "topics/causal-inference" as SimpleSlug },
+  { label: "Statistics", href: "topics/statistics" as SimpleSlug },
+  { label: "mHealth", href: "topics/mhealth" as SimpleSlug },
 ]
 
 // A hand-curated reading path. Editorial control lives here, not in a filter UI.
-const startHereSlugs = [
-  "garden/notes/researchers-are-not-end-point-verifiers",
-  "garden/notes/academics-as-ai-managers",
-  "garden/library/double-machine-learning-summary",
+const startHereSlugs: FullSlug[] = [
+  "garden/notes/researchers-are-not-end-point-verifiers" as FullSlug,
+  "garden/notes/academics-as-ai-managers" as FullSlug,
+  "garden/library/double-machine-learning-summary" as FullSlug,
 ]
 
 const validKinds = new Set(["essay", "note", "pattern", "library"])
 const placeholderSketch = "/assets/sketches/card-placeholder.svg"
+// Print-tech: typographic marks, not emoji. The trailing ︎ is a
+// variation selector forcing text presentation, so platforms that would
+// otherwise substitute a colour emoji glyph render these as type.
 const typeIcons: Record<string, string> = {
-  essay: "❧",
-  note: "✎",
-  pattern: "◈",
-  library: "📚",
+  essay: "❧︎",
+  note: "✎︎",
+  pattern: "◈︎",
+  library: "▤︎",
 }
 
+// Growth stage as a fill ramp: open → half → filled.
 const stageMeta: Record<string, { glyph: string; label: string }> = {
-  seed: { glyph: "🌱", label: "Seed" },
-  growing: { glyph: "🌿", label: "Growing" },
-  evergreen: { glyph: "🌳", label: "Evergreen" },
+  seed: { glyph: "○", label: "Seed" },
+  growing: { glyph: "◐", label: "Growing" },
+  evergreen: { glyph: "●", label: "Evergreen" },
 }
 
 function stageOf(f: QuartzPluginData): { glyph: string; label: string } {
   const status = (f.frontmatter?.status as string | undefined) ?? "seed"
-  return stageMeta[status] ?? { glyph: "🌱", label: status.charAt(0).toUpperCase() + status.slice(1) }
+  return (
+    stageMeta[status] ?? {
+      glyph: "○",
+      label: status.charAt(0).toUpperCase() + status.slice(1),
+    }
+  )
 }
 
 function byDateDesc(cfg: QuartzComponentProps["cfg"], a: QuartzPluginData, b: QuartzPluginData) {
@@ -74,9 +88,7 @@ const HomeCover: QuartzComponent = ({ fileData, allFiles, cfg }: QuartzComponent
     .map((slug) => bySlug.get(slug))
     .filter((f): f is QuartzPluginData => Boolean(f))
 
-  const excluded = new Set<string>(
-    [hero?.slug, ...startHereSlugs].filter(Boolean) as string[],
-  )
+  const excluded = new Set<string>([hero?.slug, ...startHereSlugs].filter(Boolean) as string[])
   const recent = writing
     .filter((f) => !excluded.has(f.slug!))
     .sort((a, b) => byDateDesc(cfg, a, b))
@@ -106,8 +118,7 @@ const HomeCover: QuartzComponent = ({ fileData, allFiles, cfg }: QuartzComponent
     )
   }
 
-  const heroSketch =
-    (hero?.frontmatter?.sketch as string | undefined)?.trim() || placeholderSketch
+  const heroSketch = (hero?.frontmatter?.sketch as string | undefined)?.trim() || placeholderSketch
   const heroSketchAlt =
     (hero?.frontmatter?.sketchAlt as string | undefined) ??
     `Sketch for ${hero?.frontmatter?.title ?? "the anchor essay"}`
@@ -154,8 +165,9 @@ const HomeCover: QuartzComponent = ({ fileData, allFiles, cfg }: QuartzComponent
       )}
 
       <p class="stage-legend">
-        <span aria-hidden="true">🌱</span> Seed · <span aria-hidden="true">🌿</span> Growing ·{" "}
-        <span aria-hidden="true">🌳</span> Evergreen — pages grow and are revised as the thinking does.
+        <span aria-hidden="true">○</span> Seed · <span aria-hidden="true">◐</span> Growing ·{" "}
+        <span aria-hidden="true">●</span> Evergreen — pages grow and are revised as the thinking
+        does.
       </p>
 
       <section class="home-explore">

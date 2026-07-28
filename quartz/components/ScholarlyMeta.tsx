@@ -28,18 +28,24 @@ function toTitleCase(value: string): string {
 }
 
 const ScholarlyMeta: QuartzComponent = ({ cfg, fileData, displayClass }: QuartzComponentProps) => {
-  const frontmatter = fileData.frontmatter ?? {}
+  const frontmatter = fileData.frontmatter
   const published =
-    parseDateLike(frontmatter.date) ?? fileData.dates?.published ?? fileData.dates?.created ?? null
+    parseDateLike(frontmatter?.date) ?? fileData.dates?.published ?? fileData.dates?.created ?? null
   const updated =
-    parseDateLike(frontmatter.updated) ?? fileData.dates?.modified ?? fileData.dates?.published ?? null
-  const status = typeof frontmatter.status === "string" ? frontmatter.status : null
-  const version = typeof frontmatter.version === "string" ? frontmatter.version : null
+    parseDateLike(frontmatter?.updated) ??
+    fileData.dates?.modified ??
+    fileData.dates?.published ??
+    null
+  const status = typeof frontmatter?.status === "string" ? frontmatter.status : null
+  const version = typeof frontmatter?.version === "string" ? frontmatter.version : null
 
+  // Print-tech: growth stage is marked with a fill ramp rather than emoji.
+  // Open circle → half → filled reads as an instrument marking and inherits
+  // the surrounding mono treatment. Semantics are unchanged.
   const stageGlyphs: Record<string, string> = {
-    seed: "🌱",
-    growing: "🌿",
-    evergreen: "🌳",
+    seed: "○",
+    growing: "◐",
+    evergreen: "●",
   }
 
   const entries: [string, string][] = []

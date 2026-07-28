@@ -1,0 +1,10 @@
+public
+node_modules
+.quartz-cache
+package-lock.json
+tsconfig.tsbuildinfo
+
+# Prose is authored by hand. Prettier normalises list markers, emphasis
+# characters, and table padding in ways that create noisy diffs mid-draft,
+# so the garden's Markdown is formatted by its author, not by a tool.
+content

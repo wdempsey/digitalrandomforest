@@ -58,13 +58,20 @@ type Props = {
   siteFiles?: QuartzPluginData[]
 } & QuartzComponentProps
 
-export const PageList: QuartzComponent = ({ cfg, fileData, allFiles, limit, sort, siteFiles }: Props) => {
+export const PageList: QuartzComponent = ({
+  cfg,
+  fileData,
+  allFiles,
+  limit,
+  sort,
+  siteFiles,
+}: Props) => {
   const sorter = sort ?? byDateAndAlphabeticalFolderFirst(cfg)
   const topicSource = siteFiles ?? allFiles
-  const topicSlugs = new Set(
+  const topicSlugs = new Set<string>(
     topicSource
       .map((f) => f.slug)
-      .filter((slug): slug is string => typeof slug === "string" && slug.startsWith("topics/")),
+      .filter((slug): slug is FullSlug => typeof slug === "string" && slug.startsWith("topics/")),
   )
   let list = allFiles.sort(sorter)
   if (limit) {

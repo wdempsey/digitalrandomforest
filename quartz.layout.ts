@@ -3,7 +3,8 @@ import * as Component from "./quartz/components"
 import type { QuartzComponentProps } from "./quartz/components/types"
 
 const isEssayReadingPage = (props: QuartzComponentProps) =>
-  (props.fileData.frontmatter?.kind as string | undefined) === "essay" && props.fileData.slug !== "index"
+  (props.fileData.frontmatter?.kind as string | undefined) === "essay" &&
+  props.fileData.slug !== "index"
 
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),

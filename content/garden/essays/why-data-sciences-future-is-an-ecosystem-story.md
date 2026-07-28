@@ -1,6 +1,6 @@
 ---
-title: "Why Data Science's Future Is an Ecosystem Story"
-description: "A growing essay connecting frontier-AI ecosystem arguments to Donoho's account of frictionless reproducibility."
+title: "Systems Thinking At the Heart of Data Science's Future"
+description: "Connecting AI ecosystem arguments to data science's focus on frictionless reproducibility and availability of software."
 kind: essay
 status: growing
 version: v2
@@ -13,6 +13,46 @@ draft: false
 sketch: "/assets/figures/ecosystem-hero.webp"
 sketchAlt: "An open research notebook with a soft loop of arrows rising from the page, linking a computer chip, a flow of connected boxes, a checkmark, and a lightbulb — a cycle that feeds itself"
 ---
+
+Fifteen years ago, as a first year PhD student in Statistics at the University of Chicago, I took my first class on Linear Models.  On the first day of class, I downloaded and installed R -- a software environment for statistical computing and graphics --  from source. The main textbook (hardcover, $80) had an *Online Supplement*, a.k.a., a website with white background, black text, and no UI/UX that consisted of a series of poorly labelled blue links (`example2.csv`) for blindly downloading datasets.  As with any UChicago course, we didn't use the software for over a month.  Instead, we prioritized delving deep into statistical theory (Gauss-Markov Theorem, BLUE, geometry of the F-test). In November 2011, I fit my first linear model. Technically I had done this before.  As an undergraduate and then as an investment banker, I used R and Excel to fit models.  But I had minimal to no knowledge of the underlying machinery. Now, with 2 months of intense technical training, I fit my first real, linear model. 
+
+Fitting linear models required the `lm` function, which came pre-installed in R as part of the `stats` package. Typing `?lm()`, I stared at the hieroglyphics (what is a `formula`?! Wait, linear models have `weights`?!) hoping that with enough time and effort I'd have a Nicholas Cage in *National Treasure* moment and crack the code.  After a couple of hours, I realized there was an examples section:
+
+```r
+## Annette Dobson (1990) "An Introduction to Generalized Linear Models".
+## Page 9: Plant Weight Data.
+
+ctl <- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)
+trt <- c(4.81,4.17,4.41,3.59,5.87,3.83,6.03,4.89,4.32,4.69)
+group <- gl(2, 10, 20, labels = c("Ctl","Trt"))
+weight <- c(ctl, trt)
+
+lm.D9 <- lm(weight ~ group)
+lm.D90 <- lm(weight ~ group - 1) # omitting intercept
+
+anova(lm.D9)
+summary(lm.D90)
+
+opar <- par(mfrow = c(2,2), oma = c(0, 0, 1.1, 0))
+plot(lm.D9, las = 1)      # Residuals, Fitted, ...
+par(opar)
+```
+*First Example from `?lm()` help-file. Required scrolling past sections Usage, Arguments, Details, Value, Using Time Series, Authors, References, and See Also.*
+
+I'm not trying to start a fight with the core R developers (you are a god send and the Rousseau prize is well deserved!).  I'm just pointing out that fitting a linear model in R is a fundamental component of applied statistical work and our .
+
+## Reproducible Software as the Trees of the Statistical Environment  
+
+Ten years ago, David Donoho wrote *Data Science at the Singularity*.   is the starting point 
+He was told this was a quite amazing accomplishment.  Only ten years before      a white backgorund  website to download  
+
+
+### Donoho told partial story
+
+- We have to worry about maintainence. This is by far the most underappreciated element in data science.  Pandas died.  A package was built and is the only implementation of a method but then the statistician moves on.  *Oh just use this updated software* but sometimes you just want maintenance and that's hard in academia.  I'm so thankful rousseau award went to 
+- We have cloud compute. 
+
+My point is that cloud isn't the whole story (as CS people focus on) and reproduble software isnt enough . Maintenance is important.  But AI let's you interact in all new ways with old code.
 
 Every few months a better model arrives, and a familiar reflex follows: re-tool around it, re-run the benchmarks, treat the field as reset. The model is the asset. Swap in the best one and you are ahead; fall behind on it and you are behind.
 

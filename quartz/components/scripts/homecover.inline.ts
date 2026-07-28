@@ -3,8 +3,12 @@ const setupHomeFilters = () => {
   if (!root) return
 
   const cards = Array.from(root.querySelectorAll(".writing-card")) as HTMLElement[]
-  const typeButtons = Array.from(root.querySelectorAll(".filter-chip[data-type]")) as HTMLButtonElement[]
-  const stageButtons = Array.from(root.querySelectorAll(".filter-chip[data-stage]")) as HTMLButtonElement[]
+  const typeButtons = Array.from(
+    root.querySelectorAll(".filter-chip[data-type]"),
+  ) as HTMLButtonElement[]
+  const stageButtons = Array.from(
+    root.querySelectorAll(".filter-chip[data-stage]"),
+  ) as HTMLButtonElement[]
 
   let activeType = "all"
   let activeStage = "all"
