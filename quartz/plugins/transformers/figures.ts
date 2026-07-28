@@ -29,8 +29,7 @@ import { visit, SKIP } from "unist-util-visit"
  */
 
 const VIDEO_EXT = /\.(mp4|webm|ogg|mov|m4v)$/i
-const YOUTUBE =
-  /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/i
+const YOUTUBE = /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/i
 
 type HastChild = ElementContent
 
@@ -45,8 +44,7 @@ function isBreak(node: HastChild): boolean {
 function meaningfulChildren(p: Element): Element[] {
   // Ignore whitespace text nodes and <br>; keep real elements.
   return p.children.filter(
-    (c): c is Element =>
-      c.type === "element" && !isBreak(c) && !isWhitespaceText(c),
+    (c): c is Element => c.type === "element" && !isBreak(c) && !isWhitespaceText(c),
   )
 }
 
@@ -185,8 +183,7 @@ export const Figures: QuartzTransformerPlugin = () => {
                   .map((c) => c.value)
                   .join("")
                   .trim()
-                const caption =
-                  linkText && linkText !== href ? linkText : undefined
+                const caption = linkText && linkText !== href ? linkText : undefined
 
                 const yt = href.match(YOUTUBE)
                 if (yt) {

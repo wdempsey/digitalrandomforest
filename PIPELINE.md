@@ -48,7 +48,7 @@ has a clear claim (→ note), is source-guided (→ library), is a reusable move
 
 ## Figures
 
-A piece earns a figure when an idea is easier to *see* than to say (a loop, a
+A piece earns a figure when an idea is easier to _see_ than to say (a loop, a
 contrast, a flow). The loop: I draft a shot list per piece → diagrams are authored as
 in-repo SVG, illustrations generated in Gemini from the locked style in
 `FIGURE_STYLE_KIT.md` → optimized to WebP in `content/assets/figures/` → embedded with
@@ -63,17 +63,17 @@ Keep new pages consistent:
 ```yaml
 ---
 title: "..."
-description: "..."        # one line; also feeds previews + social cards
+description: "..." # one line; also feeds previews + social cards
 kind: note | essay | library | pattern
 status: seed | growing | evergreen
 topics: [ai-workflows, statistics, ...]
 tags: [...]
-date: YYYY-MM-DD          # planted
+date: YYYY-MM-DD # planted
 updated: YYYY-MM-DD
 draft: false
-sketch: "/assets/figures/...webp"   # optional hero; shows on homepage card
-sketchAlt: "..."                    # required if sketch is set
-featured: true                      # at most one essay; drives the homepage hero
+sketch: "/assets/figures/...webp" # optional hero; shows on homepage card
+sketchAlt: "..." # required if sketch is set
+featured: true # at most one essay; drives the homepage hero
 ---
 ```
 

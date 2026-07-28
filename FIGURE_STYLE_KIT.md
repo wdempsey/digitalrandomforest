@@ -1,6 +1,6 @@
 # Figure Style Kit
 
-How we keep hand-drawn illustrations *consistent* across the garden. SVG diagrams
+How we keep hand-drawn illustrations _consistent_ across the garden. SVG diagrams
 are authored in-repo; painterly illustrations are generated in an external image
 tool using the recipe below, then dropped into `content/assets/figures/`.
 
@@ -32,7 +32,7 @@ Export **WebP** (or PNG), keep under ~400 KB.
 
 ## Consistency method
 
-1. Generate a few heroes, pick the one whose *style* you love most.
+1. Generate a few heroes, pick the one whose _style_ you love most.
 2. Reuse it as the style reference for every later image so they match:
    - Midjourney: `--sref <image-url>` (plus `--ar 3:2`)
    - Recraft: create a custom **Style** from 1–3 references, then generate in it
@@ -55,10 +55,10 @@ Open the Gemini app (gemini.google.com), make sure image generation is on.
 
 1. **First image of an essay:** paste the full prompt = master style block + the
    subject line for the figure + "3:2 landscape" (or 4:3). Generate a few, pick the
-   one whose *style* you love. This becomes the essay's style anchor.
+   one whose _style_ you love. This becomes the essay's style anchor.
 2. **Every later figure:** attach the anchor image (Gemini takes up to 14 references)
-   and start the prompt with: *"In the exact same soft hand-drawn illustration style,
-   palette, and linework as the attached image, draw: …"* then the new subject line.
+   and start the prompt with: _"In the exact same soft hand-drawn illustration style,
+   palette, and linework as the attached image, draw: …"_ then the new subject line.
    This is what keeps the set consistent.
 3. Download as PNG. Send the files to me — I convert to WebP, size them, save to
    `content/assets/figures/`, and embed them. (A great hero can also become the
@@ -103,5 +103,5 @@ other side a tangle of loose scribbles. Same effort, two outcomes.
 glowing seed hand-to-hand down a line, each one effortlessly; faint dotted lines show
 the path. Sense of something moving freely with no resistance.
 
-(The ecosystem *loop* itself is handled by the in-repo SVG diagram
+(The ecosystem _loop_ itself is handled by the in-repo SVG diagram
 `content/assets/figures/ecosystem-loop.svg`, so the hero stays more evocative.)

@@ -21,8 +21,10 @@ function sortByRelevance(current: QuartzPluginData, candidates: QuartzPluginData
   return candidates.sort((a, b) => {
     const aTopics = (a.frontmatter?.topics ?? []) as string[]
     const bTopics = (b.frontmatter?.topics ?? []) as string[]
-    const aScore = topicOverlap(currentTopics, aTopics) * 10 + (a.frontmatter?.kind === currentKind ? 3 : 0)
-    const bScore = topicOverlap(currentTopics, bTopics) * 10 + (b.frontmatter?.kind === currentKind ? 3 : 0)
+    const aScore =
+      topicOverlap(currentTopics, aTopics) * 10 + (a.frontmatter?.kind === currentKind ? 3 : 0)
+    const bScore =
+      topicOverlap(currentTopics, bTopics) * 10 + (b.frontmatter?.kind === currentKind ? 3 : 0)
     if (aScore !== bScore) return bScore - aScore
 
     const aDate = a.dates?.modified?.getTime() ?? 0
