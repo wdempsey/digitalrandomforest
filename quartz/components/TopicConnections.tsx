@@ -13,8 +13,8 @@ function byDateDesc(cfg: QuartzComponentProps["cfg"], a: QuartzPluginData, b: Qu
 
 export default (() => {
   const TopicConnections: QuartzComponent = ({ fileData, allFiles, cfg }: QuartzComponentProps) => {
-    const slug = fileData.slug ?? ""
-    if (!slug.startsWith("topics/")) return null
+    const slug = fileData.slug
+    if (!slug || !slug.startsWith("topics/")) return null
 
     const topic = slug.split("/")[1]
     const related = allFiles.filter((f) => {
