@@ -18,6 +18,15 @@
   --type-caption: 0.82rem;
   --type-small: 0.78rem;
 
+  /* Print-tech mono labelling system.
+     Mono is promoted from a code-only font to the site's labelling voice:
+     metadata, section numbers, kickers, captions, chips, nav state. */
+  --type-label: 0.635rem;
+  --type-label-lg: 0.72rem;
+  --label-tracking: 0.15em;
+  --label-weight: 500;
+  --label-tracking-tight: 0.1em;
+
   /* Measures and layout */
   --reading-measure: 62rem;
   --figure-measure: 41rem;
@@ -28,46 +37,52 @@
   --sidenote-gutter: 230px;
   --layout-gap: 32px;
 
-  /* Shared surfaces */
-  --accent: #6f8c7a;
-  --accent-dark: #5c7567;
-  --accent-soft: rgba(111, 140, 122, 0.12);
-  --chip-active: rgba(111, 140, 122, 0.12);
-  --paper-bg: #faf8f4;
-  --paper-card: #fdfbf7;
-  --paper-card-border: rgba(72, 57, 43, 0.07);
-  --panel-bg: rgba(249, 243, 235, 0.5);
-  --text-primary: #2f2a26;
-  --text-secondary: #665e57;
-  --border-faint: rgba(44, 44, 44, 0.035);
-  --border-soft: rgba(40, 35, 30, 0.06);
-  --border-strong: rgba(47, 42, 38, 0.12);
-  --tag-bg: rgba(70, 60, 52, 0.06);
-  --code-bg: rgba(255, 255, 255, 0.42);
-  --panel-control-bg: rgba(255, 255, 255, 0.45);
-  --warm-shadow: 0 8px 24px rgba(73, 58, 43, 0.06);
+  /* Shared surfaces — "Letterpress".
+     Warm paper carried over from the original identity, ink dropped to
+     near-black, and oxblood as the single spot colour. Oxblood is STRUCTURAL
+     only (links, section numbers, active state, figure labels) and must never
+     be used for semantic state — it sits close enough to the shiki keyword red
+     and the danger/warning callouts that its separation depends on staying
+     dark and low-chroma while those stay bright and saturated. */
+  --accent: #8c3a2b;
+  --accent-dark: #6e2c20;
+  --accent-soft: rgba(140, 58, 43, 0.1);
+  --chip-active: rgba(140, 58, 43, 0.1);
+  --paper-bg: #f7f4ed;
+  --paper-card: #fdfbf6;
+  --paper-card-border: rgba(33, 29, 26, 0.09);
+  --panel-bg: rgba(247, 244, 237, 0.5);
+  --text-primary: #211d1a;
+  --text-secondary: #665c52;
+  --border-faint: rgba(33, 29, 26, 0.04);
+  --border-soft: rgba(33, 29, 26, 0.1);
+  --border-strong: rgba(33, 29, 26, 0.2);
+  --tag-bg: rgba(33, 29, 26, 0.055);
+  --code-bg: #efeae0;
+  --panel-control-bg: rgba(255, 255, 255, 0.5);
+  --warm-shadow: 0 8px 24px rgba(73, 58, 43, 0.07);
   --card-radius: 14px;
   --card-border: 1px solid var(--border-soft);
   --card-bg: var(--paper-card);
 }
 
 :root[saved-theme="dark"] {
-  --accent: #9bb1a3;
-  --accent-dark: #b6c8bc;
-  --accent-soft: rgba(155, 177, 163, 0.16);
-  --chip-active: rgba(155, 177, 163, 0.18);
-  --paper-bg: #1e1b18;
-  --paper-card: #26221e;
-  --paper-card-border: rgba(240, 233, 220, 0.09);
-  --panel-bg: rgba(255, 250, 240, 0.04);
-  --text-primary: #f0e9dc;
-  --text-secondary: #b9ae9f;
-  --border-faint: rgba(240, 233, 220, 0.05);
-  --border-soft: rgba(240, 233, 220, 0.08);
-  --border-strong: rgba(240, 233, 220, 0.14);
-  --tag-bg: rgba(240, 233, 220, 0.08);
-  --code-bg: rgba(255, 250, 240, 0.045);
-  --panel-control-bg: rgba(255, 250, 240, 0.06);
+  --accent: #e0917a;
+  --accent-dark: #eaa892;
+  --accent-soft: rgba(224, 145, 122, 0.16);
+  --chip-active: rgba(224, 145, 122, 0.18);
+  --paper-bg: #1a1714;
+  --paper-card: #221e1a;
+  --paper-card-border: rgba(242, 236, 225, 0.09);
+  --panel-bg: rgba(242, 236, 225, 0.04);
+  --text-primary: #f2ece1;
+  --text-secondary: #ab9f8e;
+  --border-faint: rgba(242, 236, 225, 0.05);
+  --border-soft: rgba(242, 236, 225, 0.1);
+  --border-strong: rgba(242, 236, 225, 0.2);
+  --tag-bg: rgba(242, 236, 225, 0.07);
+  --code-bg: #241f1a;
+  --panel-control-bg: rgba(242, 236, 225, 0.06);
 }
 
 /* --------------------------------------------------------------------------
@@ -264,16 +279,11 @@ body[data-slug="index"] .page > #quartz-body > .sidebar {
   display: none;
 }
 
-body:not([data-slug="index"]):not(:has(.sidebar.left .toc))
-  .page
-  > #quartz-body
-  > .sidebar:empty {
+body:not([data-slug="index"]):not(:has(.sidebar.left .toc)) .page > #quartz-body > .sidebar:empty {
   display: none;
 }
 
-body:not([data-slug="index"]):not(:has(.sidebar.left .toc))
-  .page
-  > #quartz-body {
+body:not([data-slug="index"]):not(:has(.sidebar.left .toc)) .page > #quartz-body {
   grid-template-columns: minmax(0, 1fr);
   grid-template-areas:
     "grid-header"
@@ -468,7 +478,12 @@ body:not([data-slug="index"]):not(:has(.sidebar.left .toc))
     border: 0;
     border-radius: 0;
     background: transparent;
-    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-family:
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      "Segoe UI",
+      sans-serif;
   }
 
   .sidebar.left .toc a,
@@ -1112,6 +1127,276 @@ body[data-slug="index"] .popover,
 body[data-slug="index"] .hover-preview,
 body[data-slug="index"] .preview-panel {
   display: none;
+}
+
+/* ==========================================================================
+   PRINT-TECH STRUCTURAL LAYER
+   ==========================================================================
+   Editorial print DNA crossed with technical instrumentation.
+
+   Every rule below is palette-agnostic — it references design tokens only,
+   never a literal colour. The structure is therefore independent of the
+   palette: retheming the site means editing the :root token block above and
+   the matching theme.colors in quartz.config.ts, and nothing here.
+
+   Placed before the responsive block so it overrides the base sections
+   without outranking the media queries that follow.
+   -------------------------------------------------------------------------- */
+
+/* --- 1. The mono labelling voice ------------------------------------------ */
+
+.page .page-header .scholarly-meta .meta-label,
+.section > .meta,
+.section .content-kind,
+.section .status-chip,
+.read-next h3,
+.topic-connections h2,
+.backlinks h3,
+.footnotes h2,
+.footnotes #footnote-label,
+.figure figcaption,
+.callout[data-callout="quote"] .callout-title-inner,
+.tag-link,
+a.tag-link,
+.tags a,
+.section .topic-link,
+.home-topics .topic-pill {
+  font-family: var(--codeFont), ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-weight: var(--label-weight);
+  letter-spacing: var(--label-tracking);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- 2. ScholarlyMeta as a spec sheet -------------------------------------
+   The dot-separated inline line becomes a ruled grid of label/value cells.
+   Markup is untouched; .meta-sep is simply retired. */
+
+.page .page-header .scholarly-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  gap: 0;
+  margin: 0.2rem 0 1.5rem;
+  padding: 0;
+  border-top: 1px solid var(--border-strong);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.page .page-header .scholarly-meta .meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.22rem;
+  padding: 0.6rem 0.85rem 0.6rem 0;
+  border-right: 1px solid var(--border-soft);
+}
+
+.page .page-header .scholarly-meta .meta-item:last-child {
+  border-right: 0;
+}
+
+.page .page-header .scholarly-meta .meta-sep {
+  display: none;
+}
+
+.page .page-header .scholarly-meta .meta-label {
+  font-size: var(--type-label);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  opacity: 0.85;
+}
+
+.page .page-header .scholarly-meta .meta-value {
+  font-family: var(--codeFont), ui-monospace, monospace;
+  font-size: var(--type-label-lg);
+  font-weight: var(--label-weight);
+  letter-spacing: var(--label-tracking-tight);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+}
+
+/* --- 3. Numbered section heads and rule-work ------------------------------
+   Scoped with the existing `body:has(.sidebar.left .toc)` proxy for an essay
+   reading page, so notes, indexes, and topic pages stay unnumbered. */
+
+body:has(.sidebar.left .toc) .page article {
+  counter-reset: drf-section;
+}
+
+body:has(.sidebar.left .toc) .page article h2 {
+  counter-increment: drf-section;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border-strong);
+}
+
+body:has(.sidebar.left .toc) .page article h2::before {
+  content: counter(drf-section, decimal-leading-zero);
+  flex: none;
+  transform: translateY(-0.15em);
+  font-family: var(--codeFont), ui-monospace, monospace;
+  font-size: var(--type-label);
+  font-weight: 600;
+  letter-spacing: var(--label-tracking-tight);
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- 4. Chips: squared, bordered, mono ------------------------------------ */
+
+.tag-link,
+a.tag-link,
+.tags a,
+.chip,
+.section .topic-link,
+.section .status-chip,
+.home-topics .topic-pill {
+  padding: 0.16rem 0.48rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 2px;
+  background: var(--chip-active);
+  font-size: var(--type-label);
+  text-transform: lowercase;
+}
+
+.tag-link:hover,
+a.tag-link:hover,
+.tags a:hover,
+.chip:hover,
+.section .topic-link:hover,
+.home-topics .topic-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent-dark);
+}
+
+.section .status-chip {
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  color: var(--accent-dark);
+  text-transform: uppercase;
+}
+
+/* --- 5. Figure captions as plate labels ----------------------------------- */
+
+.figure figcaption {
+  font-size: var(--type-label);
+  line-height: 1.55;
+  letter-spacing: var(--label-tracking-tight);
+  color: var(--text-secondary);
+}
+
+/* --- 6. Section kickers --------------------------------------------------- */
+
+.read-next h3,
+.topic-connections h2,
+.backlinks h3,
+.footnotes h2,
+.footnotes #footnote-label,
+.callout[data-callout="quote"] .callout-title-inner {
+  font-size: var(--type-label);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+/* --- 7. Backlinks and Read Next as numbered ruled rows --------------------
+   Replaces bulleted lists with a ruled register. Counters exclude the
+   `.overflow-end` sentinel that OverflowList injects. */
+
+.backlinks ul,
+.read-next ul {
+  counter-reset: drf-row;
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.backlinks li:not(.overflow-end),
+.read-next li {
+  counter-increment: drf-row;
+  margin: 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.backlinks li:not(.overflow-end):last-of-type,
+.read-next li:last-of-type {
+  border-bottom: 0;
+}
+
+.backlinks li:not(.overflow-end) > a,
+.read-next li > a {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.5rem 0;
+  text-decoration: none;
+}
+
+.backlinks li:not(.overflow-end) > a::before,
+.read-next li > a::before {
+  content: counter(drf-row, decimal-leading-zero);
+  flex: none;
+  font-family: var(--codeFont), ui-monospace, monospace;
+  font-size: var(--type-label);
+  letter-spacing: var(--label-tracking-tight);
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- 8. Listing cards become ruled spec rows ------------------------------ */
+
+li.section-li {
+  margin-bottom: 0;
+  padding: 0.95rem 0;
+  border: 0;
+  border-top: 1px solid var(--border-soft);
+  border-radius: 0;
+  background: transparent;
+}
+
+ul.section-ul > li.section-li:last-child {
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.section > .meta {
+  margin-top: 0.3rem;
+  font-size: var(--type-label);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.section .content-kind {
+  font-size: var(--type-label);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.section > .desc > h3 {
+  letter-spacing: -0.014em;
+}
+
+/* --- 9. Footnote register ------------------------------------------------- */
+
+.footnotes {
+  border-top: 1px solid var(--border-strong);
+}
+
+/* --- 10. Stage marks ------------------------------------------------------
+   The growth ramp (○ ◐ ●) reads as instrumentation, so it takes the accent
+   and sits optically centred against the label beside it. */
+
+.writing-card-stage span[aria-hidden="true"],
+.hero-card-meta span[aria-hidden="true"],
+.stage-legend span[aria-hidden="true"],
+.card-icon {
+  color: var(--accent);
+  font-size: 0.9em;
+  line-height: 1;
+}
+
+.stage-legend {
+  font-family: var(--codeFont), ui-monospace, monospace;
+  font-size: var(--type-label);
+  letter-spacing: var(--label-tracking-tight);
+  color: var(--text-secondary);
 }
 
 /* --------------------------------------------------------------------------

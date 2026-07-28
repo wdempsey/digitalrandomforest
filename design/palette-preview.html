@@ -1,0 +1,1099 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Digital Random Forest — Print-Tech Direction Plate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ==========================================================================
+   HARNESS  — chrome around the mocks. Deliberately neutral so it does not
+   contaminate judgement of the palettes themselves.
+   ========================================================================== */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      :root {
+        --ui-bg: #101113;
+        --ui-panel: #191b1e;
+        --ui-line: #2b2e33;
+        --ui-text: #e7e7e5;
+        --ui-dim: #8e9095;
+        --ui-accent: #d8b26a;
+        --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        background: var(--ui-bg);
+        color: var(--ui-text);
+        font-family: var(--mono);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ---- control bar ---- */
+      .bar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 0.85rem 1.4rem;
+        background: rgba(16, 17, 19, 0.94);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--ui-line);
+      }
+      .bar h1 {
+        margin: 0;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--ui-accent);
+      }
+      .bar h1 span {
+        color: var(--ui-dim);
+        font-weight: 400;
+      }
+      .grp {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .grp > label {
+        font-size: 0.62rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ui-dim);
+      }
+      .seg {
+        display: flex;
+        border: 1px solid var(--ui-line);
+        border-radius: 3px;
+        overflow: hidden;
+      }
+      .seg button {
+        appearance: none;
+        border: 0;
+        cursor: pointer;
+        padding: 0.34rem 0.7rem;
+        background: transparent;
+        color: var(--ui-dim);
+        font-family: var(--mono);
+        font-size: 0.66rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transition:
+          background 120ms,
+          color 120ms;
+      }
+      .seg button + button {
+        border-left: 1px solid var(--ui-line);
+      }
+      .seg button:hover {
+        color: var(--ui-text);
+        background: rgba(255, 255, 255, 0.04);
+      }
+      .seg button[aria-pressed="true"] {
+        background: var(--ui-accent);
+        color: #14150f;
+        font-weight: 600;
+      }
+      .hint {
+        margin-left: auto;
+        font-size: 0.62rem;
+        color: var(--ui-dim);
+        letter-spacing: 0.06em;
+      }
+
+      /* ---- stage ---- */
+      .stage {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1px;
+        background: var(--ui-line);
+        border-top: 1px solid var(--ui-line);
+      }
+      .stage[data-view="single"] {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .stage[data-view="single"] .col[hidden] {
+        display: none;
+      }
+      .stage[data-baseline="on"] {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+      .stage[data-baseline="on"][data-view="single"] {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .col {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        background: var(--bg);
+      }
+
+      /* ---- per-column header (harness styling, not part of the design) ---- */
+      .col-head {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        padding: 0.8rem 1rem 0.75rem;
+        background: rgba(16, 17, 19, 0.96);
+        border-bottom: 1px solid var(--ui-line);
+      }
+      .col-head .row {
+        display: flex;
+        align-items: baseline;
+        gap: 0.6rem;
+      }
+      .col-head .name {
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ui-text);
+      }
+      .col-head .dna {
+        font-size: 0.6rem;
+        color: var(--ui-dim);
+        letter-spacing: 0.06em;
+      }
+      .col-head .desc {
+        margin: 0.4rem 0 0;
+        font-size: 0.63rem;
+        line-height: 1.5;
+        color: var(--ui-dim);
+        letter-spacing: 0.02em;
+      }
+      .swatches {
+        display: flex;
+        gap: 3px;
+        margin-top: 0.6rem;
+      }
+      .swatches i {
+        flex: 1;
+        height: 15px;
+        border-radius: 2px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .metrics {
+        display: flex;
+        gap: 0.85rem;
+        margin-top: 0.55rem;
+        font-size: 0.57rem;
+        color: var(--ui-dim);
+        letter-spacing: 0.05em;
+      }
+      .metrics b {
+        color: #7fd6a0;
+        font-weight: 500;
+      }
+      .expand {
+        appearance: none;
+        cursor: pointer;
+        margin-top: 0.6rem;
+        width: 100%;
+        padding: 0.3rem;
+        background: transparent;
+        border: 1px solid var(--ui-line);
+        border-radius: 3px;
+        color: var(--ui-dim);
+        font-family: var(--mono);
+        font-size: 0.58rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .expand:hover {
+        color: var(--ui-text);
+        border-color: var(--ui-accent);
+      }
+
+      .viewport {
+        flex: 1;
+        overflow-y: auto;
+        max-height: calc(100vh - 60px);
+      }
+
+      /* ==========================================================================
+   PALETTE TOKENS  — the actual thing under evaluation.
+   Mirrors the :root block in quartz/styles/custom.scss.
+   ========================================================================== */
+
+      /* --- Current (baseline) --- */
+      .col[data-dir="current"] {
+        --bg: #faf8f4;
+        --card: #fdfbf7;
+        --text: #2f2a26;
+        --text2: #665e57;
+        --accent: #6f8c7a;
+        --border: rgba(40, 35, 30, 0.06);
+        --border-strong: rgba(47, 42, 38, 0.12);
+        --code: #f2efe9;
+        --chip: rgba(70, 60, 52, 0.06);
+        --rule-em: rgba(47, 42, 38, 0.12);
+      }
+      .col[data-dir="current"][data-mode="dark"] {
+        --bg: #1e1b18;
+        --card: #26221e;
+        --text: #f0e9dc;
+        --text2: #b9ae9f;
+        --accent: #9bb1a3;
+        --border: rgba(240, 233, 220, 0.08);
+        --border-strong: rgba(240, 233, 220, 0.14);
+        --code: #24211d;
+        --chip: rgba(240, 233, 220, 0.08);
+        --rule-em: rgba(240, 233, 220, 0.14);
+      }
+
+      /* --- A · Ledger --- */
+      .col[data-dir="ledger"] {
+        --bg: #f4f3f0;
+        --card: #fafaf8;
+        --text: #1c1c1a;
+        --text2: #5c5c55;
+        --accent: #2c4657;
+        --border: rgba(28, 28, 26, 0.1);
+        --border-strong: rgba(28, 28, 26, 0.2);
+        --code: #eceae5;
+        --chip: rgba(28, 28, 26, 0.055);
+        --rule-em: rgba(28, 28, 26, 0.32);
+      }
+      .col[data-dir="ledger"][data-mode="dark"] {
+        --bg: #16171a;
+        --card: #1d1f22;
+        --text: #e8e6e1;
+        --text2: #9d9c96;
+        --accent: #8fb3c2;
+        --border: rgba(232, 230, 225, 0.1);
+        --border-strong: rgba(232, 230, 225, 0.2);
+        --code: #202226;
+        --chip: rgba(232, 230, 225, 0.07);
+        --rule-em: rgba(232, 230, 225, 0.32);
+      }
+
+      /* --- B · Letterpress --- */
+      .col[data-dir="letterpress"] {
+        --bg: #f7f4ed;
+        --card: #fdfbf6;
+        --text: #211d1a;
+        --text2: #665c52;
+        --accent: #8c3a2b;
+        --border: rgba(33, 29, 26, 0.1);
+        --border-strong: rgba(33, 29, 26, 0.2);
+        --code: #efeae0;
+        --chip: rgba(33, 29, 26, 0.055);
+        --rule-em: rgba(33, 29, 26, 0.32);
+      }
+      .col[data-dir="letterpress"][data-mode="dark"] {
+        --bg: #1a1714;
+        --card: #221e1a;
+        --text: #f2ece1;
+        --text2: #ab9f8e;
+        --accent: #e0917a;
+        --border: rgba(242, 236, 225, 0.1);
+        --border-strong: rgba(242, 236, 225, 0.2);
+        --code: #241f1a;
+        --chip: rgba(242, 236, 225, 0.07);
+        --rule-em: rgba(242, 236, 225, 0.32);
+      }
+
+      /* --- C · Blueprint --- */
+      .col[data-dir="blueprint"] {
+        --bg: #edf0f1;
+        --card: #f8fafa;
+        --text: #14181a;
+        --text2: #516066;
+        --accent: #15556f;
+        --border: rgba(20, 24, 26, 0.11);
+        --border-strong: rgba(20, 24, 26, 0.22);
+        --code: #e3e8ea;
+        --chip: rgba(20, 24, 26, 0.06);
+        --rule-em: rgba(20, 24, 26, 0.34);
+      }
+      .col[data-dir="blueprint"][data-mode="dark"] {
+        --bg: #0f1418;
+        --card: #161d22;
+        --text: #e6edf0;
+        --text2: #93a3aa;
+        --accent: #5fb8cf;
+        --border: rgba(230, 237, 240, 0.1);
+        --border-strong: rgba(230, 237, 240, 0.2);
+        --code: #131a1f;
+        --chip: rgba(230, 237, 240, 0.07);
+        --rule-em: rgba(230, 237, 240, 0.32);
+      }
+
+      /* ==========================================================================
+   THE MOCK  — print-tech applied to the real Quartz markup + class names.
+   Structure (nav / title / scholarly-meta / tags / sidenotes / figure /
+   quote callout / backlinks) is preserved exactly per §1 of the brief.
+   ========================================================================== */
+      .mock {
+        --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+        --body: "Newsreader", Georgia, serif;
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--body);
+        padding: 2.2rem 1.8rem 5rem;
+        min-height: 100%;
+      }
+      .stage[data-view="single"] .mock {
+        padding: 3rem clamp(1.5rem, 8vw, 7rem) 6rem;
+      }
+
+      /* --- mono labelling system: the "tech" half of print-tech --- */
+      .mock .label {
+        font-family: var(--mono);
+        font-size: 0.635rem;
+        font-weight: 500;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--text2);
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* --- top nav --- */
+      .mock .top-nav {
+        display: flex;
+        align-items: center;
+        gap: 1.1rem;
+        padding-bottom: 0.65rem;
+        border-bottom: 1px solid var(--border-strong);
+      }
+      .mock .top-nav-logo-icon {
+        width: 17px;
+        height: 17px;
+        flex: none;
+        border-radius: 2px;
+        background: var(--accent);
+        -webkit-mask: radial-gradient(circle at 50% 62%, #000 42%, transparent 43%) no-repeat
+          center / 100% 100%;
+        mask: radial-gradient(circle at 50% 62%, #000 42%, transparent 43%) no-repeat center / 100%
+          100%;
+      }
+      .mock .top-nav ul {
+        display: flex;
+        gap: 1rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .mock .top-nav a {
+        font-family: var(--mono);
+        font-size: 0.66rem;
+        font-weight: 500;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        color: var(--text2);
+        text-decoration: none;
+      }
+      .mock .top-nav a:hover {
+        color: var(--accent);
+      }
+      .mock .folio {
+        margin-left: auto;
+        font-family: var(--mono);
+        font-size: 0.6rem;
+        letter-spacing: 0.13em;
+        color: var(--text2);
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* --- running head: print furniture --- */
+      .mock .running-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        margin: 1.5rem 0 0.9rem;
+      }
+
+      /* --- title --- */
+      .mock .article-title {
+        margin: 0 0 0.9rem;
+        font-family: var(--serif);
+        font-size: clamp(1.85rem, 3.3vw, 3.1rem);
+        font-weight: 600;
+        line-height: 1.03;
+        letter-spacing: -0.028em;
+        text-wrap: balance;
+      }
+
+      /* --- scholarly meta as a spec sheet: the print-tech payoff --- */
+      .mock .scholarly-meta {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(88px, 1fr));
+        gap: 0;
+        margin: 0 0 1.4rem;
+        padding: 0;
+        border-top: 1px solid var(--border-strong);
+        border-bottom: 1px solid var(--border);
+      }
+      .mock .meta-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.22rem;
+        padding: 0.6rem 0.75rem 0.6rem 0;
+        border-right: 1px solid var(--border);
+      }
+      .mock .meta-item:last-child {
+        border-right: 0;
+      }
+      .mock .meta-label {
+        font-family: var(--mono);
+        font-size: 0.56rem;
+        font-weight: 500;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--text2);
+        opacity: 0.85;
+      }
+      .mock .meta-value {
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        font-weight: 500;
+        color: var(--text);
+        font-variant-numeric: tabular-nums;
+      }
+      .mock .meta-value.is-stage {
+        color: var(--accent);
+      }
+
+      /* --- tags --- */
+      .mock .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.34rem;
+        margin: 0 0 1.8rem;
+        padding: 0;
+        list-style: none;
+      }
+      .mock .tag-link {
+        display: inline-block;
+        padding: 0.16rem 0.46rem;
+        border: 1px solid var(--border-strong);
+        border-radius: 2px;
+        background: var(--chip);
+        font-family: var(--mono);
+        font-size: 0.6rem;
+        letter-spacing: 0.06em;
+        color: var(--text2);
+        text-decoration: none;
+      }
+      .mock .tag-link:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+
+      /* --- body copy --- */
+      .mock article p {
+        margin: 0 0 1.15rem;
+        font-size: 1.02rem;
+        line-height: 1.62;
+        color: var(--text);
+      }
+      .stage[data-view="single"] .mock article {
+        max-width: 38rem;
+      }
+      .stage[data-view="single"] .mock article p {
+        font-size: 1.16rem;
+      }
+      .mock article a {
+        color: var(--accent);
+        text-decoration: underline;
+        text-underline-offset: 0.16em;
+        text-decoration-thickness: 0.06em;
+      }
+      .mock article em {
+        font-style: italic;
+      }
+      .mock article code {
+        font-family: var(--mono);
+        font-size: 0.86em;
+        padding: 0.08em 0.3em;
+        border-radius: 2px;
+        background: var(--chip);
+        color: var(--text);
+      }
+
+      /* --- numbered section heads --- */
+      .mock article h2 {
+        display: flex;
+        align-items: baseline;
+        gap: 0.7rem;
+        margin: 2.4rem 0 0.9rem;
+        padding-top: 0.75rem;
+        border-top: 1px solid var(--border-strong);
+        font-family: var(--serif);
+        font-size: 1.42rem;
+        font-weight: 600;
+        line-height: 1.16;
+        letter-spacing: -0.018em;
+      }
+      .mock article h2 .sec-no {
+        flex: none;
+        font-family: var(--mono);
+        font-size: 0.62rem;
+        font-weight: 500;
+        letter-spacing: 0.13em;
+        color: var(--accent);
+        font-variant-numeric: tabular-nums;
+        transform: translateY(-0.15em);
+      }
+
+      /* --- sidenote --- */
+      .mock .sidenote-ref {
+        font-family: var(--mono);
+        font-size: 0.62em;
+        font-weight: 600;
+        color: var(--accent);
+        vertical-align: super;
+        line-height: 0;
+        padding-left: 0.1em;
+      }
+      .mock .sidenote {
+        display: block;
+        margin: 1.1rem 0 1.3rem;
+        padding: 0.65rem 0 0.65rem 0.85rem;
+        border-left: 2px solid var(--accent);
+        font-size: 0.82rem;
+        line-height: 1.5;
+        color: var(--text2);
+      }
+      .mock .sidenote .sidenote-num {
+        font-family: var(--mono);
+        font-weight: 600;
+        color: var(--accent);
+        margin-right: 0.35rem;
+        font-size: 0.75em;
+        vertical-align: super;
+        line-height: 0;
+      }
+
+      /* --- code block: shiki colours are HARDCODED in the built HTML --- */
+      .mock figure[data-rehype-pretty-code-figure] {
+        margin: 1.5rem 0;
+      }
+      .mock pre {
+        margin: 0;
+        padding: 0.95rem 1.05rem;
+        overflow-x: auto;
+        background: var(--code);
+        border: 1px solid var(--border-strong);
+        border-radius: 3px;
+      }
+      .mock pre code {
+        display: grid;
+        padding: 0;
+        background: transparent;
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        line-height: 1.62;
+      }
+      .mock pre code span[data-line] {
+        display: block;
+      }
+      .mock pre span {
+        color: var(--shiki-light);
+      }
+      .col[data-mode="dark"] .mock pre span {
+        color: var(--shiki-dark);
+      }
+      .mock .code-caption {
+        margin-top: 0.5rem;
+        font-family: var(--mono);
+        font-size: 0.6rem;
+        line-height: 1.5;
+        letter-spacing: 0.05em;
+        color: var(--text2);
+      }
+
+      /* --- display maths (native MathML — no CDN dependency) --- */
+      .mock .math-block {
+        margin: 1.7rem 0;
+        padding: 1.05rem 0.9rem;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        text-align: center;
+        position: relative;
+      }
+      .mock .math-block math {
+        font-family: var(--serif);
+        font-size: 1.18rem;
+        color: var(--text);
+      }
+      .mock .math-block .eqno {
+        position: absolute;
+        right: 0.4rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-family: var(--mono);
+        font-size: 0.6rem;
+        color: var(--text2);
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* --- figure --- */
+      .mock .figure {
+        margin: 1.8rem 0;
+      }
+      .mock .figure .plate {
+        height: 116px;
+        border: 1px solid var(--border-strong);
+        border-radius: 3px;
+        background:
+          linear-gradient(var(--border) 1px, transparent 1px) 0 0 / 100% 15px,
+          linear-gradient(90deg, var(--border) 1px, transparent 1px) 0 0 / 15px 100%,
+          var(--card);
+        position: relative;
+      }
+      .mock .figure .plate::after {
+        content: "";
+        position: absolute;
+        inset: 26% 18%;
+        border: 1.5px solid var(--accent);
+        border-radius: 50%;
+        opacity: 0.62;
+      }
+      .mock .figure figcaption {
+        display: flex;
+        gap: 0.6rem;
+        margin-top: 0.55rem;
+        font-family: var(--mono);
+        font-size: 0.6rem;
+        line-height: 1.55;
+        letter-spacing: 0.04em;
+        color: var(--text2);
+      }
+      .mock .figure figcaption b {
+        flex: none;
+        color: var(--accent);
+        font-weight: 600;
+        letter-spacing: 0.12em;
+      }
+
+      /* --- quote callout --- */
+      .mock .callout.quote {
+        margin: 2.4rem 0;
+        padding: 1.2rem 0;
+        text-align: center;
+        border-top: 1px solid var(--rule-em);
+        border-bottom: 1px solid var(--rule-em);
+      }
+      .mock .callout.quote .callout-title-inner {
+        display: block;
+        margin-bottom: 0.7rem;
+        font-family: var(--mono);
+        font-size: 0.57rem;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--text2);
+      }
+      .mock .callout.quote p {
+        margin: 0;
+        font-family: var(--serif);
+        font-size: 1.22rem;
+        font-weight: 400;
+        line-height: 1.4;
+        letter-spacing: -0.012em;
+      }
+
+      /* --- backlinks rail, kept subordinate --- */
+      .mock .backlinks {
+        margin-top: 2.6rem;
+        padding-top: 0.8rem;
+        border-top: 1px solid var(--border-strong);
+      }
+      .mock .backlinks h3 {
+        margin: 0 0 0.7rem;
+        font-family: var(--mono);
+        font-size: 0.58rem;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--text2);
+      }
+      .mock .backlinks ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .mock .backlinks li {
+        border-bottom: 1px solid var(--border);
+      }
+      .mock .backlinks li:last-child {
+        border-bottom: 0;
+      }
+      .mock .backlinks a {
+        display: flex;
+        align-items: baseline;
+        gap: 0.55rem;
+        padding: 0.5rem 0;
+        color: var(--text);
+        text-decoration: none;
+        font-size: 0.86rem;
+      }
+      .mock .backlinks a:hover {
+        color: var(--accent);
+      }
+      .mock .backlinks a .n {
+        font-family: var(--mono);
+        font-size: 0.58rem;
+        color: var(--text2);
+        font-variant-numeric: tabular-nums;
+        flex: none;
+      }
+      .mock .backlinks a .stage-dot {
+        margin-left: auto;
+        flex: none;
+        font-family: var(--mono);
+        font-size: 0.55rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+
+      /* --- listing card (garden index) --- */
+      .mock .listing {
+        margin-top: 2.6rem;
+      }
+      .mock .listing > .label {
+        display: block;
+        margin-bottom: 0.7rem;
+      }
+      .mock .card {
+        padding: 0.85rem 0;
+        border-top: 1px solid var(--border);
+      }
+      .mock .card .row1 {
+        display: flex;
+        align-items: baseline;
+        gap: 0.55rem;
+      }
+      .mock .card .kind {
+        font-family: var(--mono);
+        font-size: 0.55rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+        flex: none;
+      }
+      .mock .card h4 {
+        margin: 0;
+        font-family: var(--serif);
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: -0.012em;
+      }
+      .mock .card p {
+        margin: 0.3rem 0 0;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        color: var(--text2);
+      }
+      .mock .card .row2 {
+        display: flex;
+        gap: 0.8rem;
+        margin-top: 0.4rem;
+        font-family: var(--mono);
+        font-size: 0.55rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text2);
+        font-variant-numeric: tabular-nums;
+      }
+
+      @media (max-width: 1100px) {
+        .stage,
+        .stage[data-baseline="on"] {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .viewport {
+          max-height: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bar">
+      <h1>Digital Random Forest <span>· print-tech direction plate</span></h1>
+
+      <div class="grp">
+        <label>Mode</label>
+        <div class="seg" id="seg-mode">
+          <button data-mode="light" aria-pressed="true">Light</button>
+          <button data-mode="dark" aria-pressed="false">Dark</button>
+        </div>
+      </div>
+
+      <div class="grp">
+        <label>View</label>
+        <div class="seg" id="seg-view">
+          <button data-view="grid" aria-pressed="true">Side by side</button>
+          <button data-view="single" aria-pressed="false">Full width</button>
+        </div>
+      </div>
+
+      <div class="grp">
+        <label>Baseline</label>
+        <div class="seg" id="seg-base">
+          <button data-base="off" aria-pressed="true">Hide current</button>
+          <button data-base="on" aria-pressed="false">Show current</button>
+        </div>
+      </div>
+
+      <p class="hint">Structure is frozen · only the surface changes</p>
+    </div>
+
+    <div class="stage" id="stage" data-view="grid" data-baseline="off">
+      <!-- columns injected here -->
+    </div>
+
+    <script>
+      /* ==========================================================================
+   Directions. The mock body is generated once and cloned per column so that
+   every palette is judged against byte-identical markup.
+   ========================================================================== */
+      const DIRECTIONS = [
+        {
+          id: "current",
+          name: "Current",
+          dna: "baseline",
+          desc: "Today's warm parchment + sage. Shown for reference only.",
+          swatch: ["#faf8f4", "#fdfbf7", "#2f2a26", "#665e57", "#6f8c7a", "#f2efe9"],
+          metrics: "body 13.4:1 · accent 3.5:1",
+          warn: true,
+        },
+        {
+          id: "ledger",
+          name: "A · Ledger",
+          dna: "pi.dev DNA",
+          desc: "Near-neutral warm grey, mono-forward, one deep slate-blue accent. Restraint is the whole argument. Quietest of the three; lets figures and maths carry the colour.",
+          swatch: ["#f4f3f0", "#fafaf8", "#1c1c1a", "#5c5c55", "#2c4657", "#eceae5"],
+          metrics: "body 15.4:1 · accent 8.9:1",
+        },
+        {
+          id: "letterpress",
+          name: "B · Letterpress",
+          dna: "print DNA",
+          desc: "Keeps your warm paper, drops the ink to near-black, and adds oxblood as a classic second colour. Closest to the existing identity — reads as a printed journal.",
+          swatch: ["#f7f4ed", "#fdfbf6", "#211d1a", "#665c52", "#8c3a2b", "#efeae0"],
+          metrics: "body 15.2:1 · accent 6.9:1",
+        },
+        {
+          id: "blueprint",
+          name: "C · Blueprint",
+          dna: "chaseai.io DNA",
+          desc: "Cool slate paper, highest structural contrast, teal-cyan accent. Most overtly technical — strongest for code and diagrams, furthest from 'quiet study'.",
+          swatch: ["#edf0f1", "#f8fafa", "#14181a", "#516066", "#15556f", "#e3e8ea"],
+          metrics: "body 15.6:1 · accent 7.2:1",
+        },
+      ]
+
+      /* Real prose and real class names, lifted from the built essay page. */
+      const MOCK = `
+<div class="mock">
+  <nav class="top-nav" aria-label="Primary">
+    <span class="top-nav-logo-icon"></span>
+    <ul>
+      <li><a href="#">Garden</a></li>
+      <li><a href="#">Now</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+    <span class="folio">DRF / ESSAYS</span>
+  </nav>
+
+  <div class="running-head">
+    <span class="label">Essay — 04</span>
+    <span class="label">Growing · v2</span>
+  </div>
+
+  <h1 class="article-title">Systems Thinking At the Heart of Data Science's Future</h1>
+
+  <p class="scholarly-meta">
+    <span class="meta-item"><span class="meta-label">Published</span><span class="meta-value">2026-06-15</span></span>
+    <span class="meta-item"><span class="meta-label">Updated</span><span class="meta-value">2026-06-24</span></span>
+    <span class="meta-item"><span class="meta-label">Stage</span><span class="meta-value is-stage">Growing</span></span>
+    <span class="meta-item"><span class="meta-label">Version</span><span class="meta-value">v2</span></span>
+  </p>
+
+  <ul class="tags">
+    <li><a class="tag-link" href="#">essay</a></li>
+    <li><a class="tag-link" href="#">ecosystem</a></li>
+    <li><a class="tag-link" href="#">open-source</a></li>
+    <li><a class="tag-link" href="#">reproducibility</a></li>
+  </ul>
+
+  <article>
+    <p>Fifteen years ago, as a first year PhD student in Statistics at the University of Chicago, I took my first class on Linear Models. On the first day of class, I downloaded and installed R — a software environment for statistical computing and graphics — from source. The main textbook had an <em>Online Supplement</em>, a.k.a. a website with white background, black text, and no UI/UX that consisted of a series of poorly labelled blue links (<code>example2.csv</code>).<sup class="sidenote-ref">1</sup></p>
+
+    <span class="sidenote"><span class="sidenote-num">1</span>The sidenote gutter is preserved exactly as it is today — this is the Tufte behaviour from <code>Plugin.Sidenotes()</code>, restyled but not restructured.</span>
+
+    <p>Fitting linear models required the <code>lm</code> function, which came pre-installed in R as part of the <code>stats</code> package. Typing <code>?lm()</code>, I stared at the hieroglyphics hoping that with enough time I'd crack the code. After a couple of hours, I realised there was an examples section:</p>
+
+    <figure data-rehype-pretty-code-figure>
+      <pre tabindex="0" data-language="r"><code data-language="r"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">## Page 9: Plant Weight Data.</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">ctl </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">&lt;-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> c</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">4.17</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">5.58</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">5.18</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">lm.D9 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">&lt;-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> lm</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(weight </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">~</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> group)</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">anova</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(lm.D9)</span></span></code></pre>
+      <p class="code-caption">FIG. R-01 &nbsp;·&nbsp; First example from the <code>?lm()</code> help file. Shiki colours are baked into the built HTML and cannot be re-tokenised — the surface must harmonise around them.</p>
+    </figure>
+
+    <div class="math-block">
+      <math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+        <mrow>
+          <mover><mi>β</mi><mo>^</mo></mover>
+          <mo>=</mo>
+          <mo stretchy="false">(</mo><msup><mi>X</mi><mo>⊤</mo></msup><mi>X</mi><msup><mo stretchy="false">)</mo><mrow><mo>−</mo><mn>1</mn></mrow></msup>
+          <msup><mi>X</mi><mo>⊤</mo></msup><mi>y</mi>
+        </mrow>
+      </math>
+      <span class="eqno">(1)</span>
+    </div>
+
+    <h2><span class="sec-no">01</span> What an ecosystem advantage actually is</h2>
+
+    <p>Modern AI progress is usually narrated as a model story. Both the history of data science and the likely future of AI-assisted work point somewhere else: the real source of compounding advantage is the <a href="#">ecosystem around models</a> — shared tools, reusable workflows, evaluation loops, institutional memory, and reproducible traces.</p>
+
+    <figure class="figure">
+      <div class="plate"></div>
+      <figcaption><b>FIG. 02</b><span>A clockwise loop of four stages — models, workflows and traces, evaluation loops, and judgment and memory — each arrow feeding into the next.</span></figcaption>
+    </figure>
+
+    <blockquote class="callout quote">
+      <span class="callout-title-inner">The argument</span>
+      <p>Model access is not the moat. The learning ecosystem is.</p>
+    </blockquote>
+
+    <h2><span class="sec-no">02</span> Reproducible software as trees</h2>
+
+    <p>Every few months a better model arrives, and a familiar reflex follows: re-tool around it, re-run the benchmarks, treat the field as reset. I think that framing quietly misreads where data science gets its leverage.</p>
+
+    <div class="backlinks">
+      <h3>Linked from</h3>
+      <ul>
+        <li><a href="#"><span class="n">01</span>Why this garden needs multiple lenses<span class="stage-dot">Seedling</span></a></li>
+        <li><a href="#"><span class="n">02</span>What makes a reproducible workflow<span class="stage-dot">Growing</span></a></li>
+        <li><a href="#"><span class="n">03</span>An AI copilot for statistical thinking<span class="stage-dot">Budding</span></a></li>
+      </ul>
+    </div>
+
+    <div class="listing">
+      <span class="label">Garden — Essays</span>
+      <div class="card">
+        <div class="row1"><span class="kind">Essay</span><h4>What makes a reproducible workflow</h4></div>
+        <p>Reproducibility is usually framed as a packaging problem. It is closer to a maintenance problem.</p>
+        <div class="row2"><span>2026-05-02</span><span>Growing</span><span>v3</span><span>Statistics</span></div>
+      </div>
+      <div class="card">
+        <div class="row1"><span class="kind">Note</span><h4>Pandas died, and what that cost us</h4></div>
+        <p>A short note on what happens when the only implementation of a method loses its maintainer.</p>
+        <div class="row2"><span>2026-04-18</span><span>Seedling</span><span>v1</span><span>Software</span></div>
+      </div>
+    </div>
+  </article>
+</div>`
+
+      const stage = document.getElementById("stage")
+
+      function build() {
+        stage.innerHTML = ""
+        DIRECTIONS.forEach((d) => {
+          const col = document.createElement("div")
+          col.className = "col"
+          col.dataset.dir = d.id
+          col.dataset.mode = "light"
+          if (d.id === "current") col.dataset.baseline = "yes"
+
+          col.innerHTML = `
+      <div class="col-head">
+        <div class="row">
+          <span class="name">${d.name}</span>
+          <span class="dna">${d.dna}</span>
+        </div>
+        <p class="desc">${d.desc}</p>
+        <div class="swatches">${d.swatch.map((c) => `<i style="background:${c}"></i>`).join("")}</div>
+        <div class="metrics"><span>${d.metrics.split(" · ")[0]}</span><span style="${d.warn ? "color:#e0876f" : ""}">${d.metrics.split(" · ")[1]}${d.warn ? " ✕ AA" : ""}</span></div>
+        <button class="expand" data-id="${d.id}">View full width</button>
+      </div>
+      <div class="viewport">${MOCK}</div>`
+          stage.appendChild(col)
+        })
+        applyBaseline()
+      }
+
+      function setMode(mode) {
+        document.querySelectorAll(".col").forEach((c) => (c.dataset.mode = mode))
+        document
+          .querySelectorAll("#seg-mode button")
+          .forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.mode === mode)))
+      }
+
+      function setView(view, onlyId) {
+        stage.dataset.view = view
+        document
+          .querySelectorAll("#seg-view button")
+          .forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.view === view)))
+        document.querySelectorAll(".col").forEach((c) => {
+          c.hidden = view === "single" && onlyId ? c.dataset.dir !== onlyId : false
+          const btn = c.querySelector(".expand")
+          btn.textContent =
+            view === "single" && onlyId === c.dataset.dir
+              ? "Back to side by side"
+              : "View full width"
+        })
+        applyBaseline()
+      }
+
+      function applyBaseline() {
+        const on = stage.dataset.baseline === "on"
+        const cur = stage.querySelector('.col[data-baseline="yes"]')
+        if (cur && stage.dataset.view === "grid") cur.hidden = !on
+      }
+
+      document.getElementById("seg-mode").addEventListener("click", (e) => {
+        const b = e.target.closest("button")
+        if (b) setMode(b.dataset.mode)
+      })
+      document.getElementById("seg-view").addEventListener("click", (e) => {
+        const b = e.target.closest("button")
+        if (b) setView(b.dataset.view, null)
+      })
+      document.getElementById("seg-base").addEventListener("click", (e) => {
+        const b = e.target.closest("button")
+        if (!b) return
+        stage.dataset.baseline = b.dataset.base
+        document
+          .querySelectorAll("#seg-base button")
+          .forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.base === b.dataset.base)))
+        applyBaseline()
+      })
+      stage.addEventListener("click", (e) => {
+        const b = e.target.closest(".expand")
+        if (!b) return
+        const isOpen =
+          stage.dataset.view === "single" &&
+          !stage.querySelector(`.col[data-dir="${b.dataset.id}"]`).hidden
+        isOpen ? setView("grid", null) : setView("single", b.dataset.id)
+      })
+
+      build()
+    </script>
+  </body>
+</html>
